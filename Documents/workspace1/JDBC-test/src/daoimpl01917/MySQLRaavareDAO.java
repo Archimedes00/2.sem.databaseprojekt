@@ -12,7 +12,7 @@ import daointerfaces01917.DALException;
 import daointerfaces01917.RaavareDAO;
 import dto01917.OperatoerDTO;
 import dto01917.RaavareDTO;
-//
+
 public class MySQLRaavareDAO implements RaavareDAO {
 
 	private Connector connector;
