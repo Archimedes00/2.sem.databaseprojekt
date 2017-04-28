@@ -10,32 +10,65 @@ import connector01917.Connector;
 
 import daointerfaces01917.DALException;
 import daointerfaces01917.ReceptDAO;
+import dto01917.OperatoerDTO;
 import dto01917.ReceptDTO;
 
 public class MySQLReceptDAO implements ReceptDAO {
+	
+	private Connector connector;
+	public MySQLReceptDAO(){
+		connector = new Connector();
+	}
 
-	@Override
 	public ReceptDTO getRecept(int receptId) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+	    	ResultSet rs = connector.doQuery("SELECT * FROM recept WHERE recept_id = " + receptId);
+	    	if (!rs.first()) throw new DALException("Identifikationsnummer " + receptId + " findes ikke");
+	    	return new ReceptDTO (rs.getInt("recept_id"), rs.getString("recept_navn"));
+	    }
+	    catch (SQLException e) {throw new DALException(e); }
 	}
 
 	@Override
 	public List<ReceptDTO> getReceptList() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		List<ReceptDTO> list = new ArrayList<ReceptDTO>();
+		try
+		{
+			ResultSet rs = connector.doQuery("SELECT * FROM operatoer");
+			while (rs.next()) 
+			{
+				list.add(new ReceptDTO(rs.getInt("recept_id"), rs.getString("recept_navn")));
+			}
+		}
+		catch (SQLException e) { throw new DALException(e); }
+		return list;
 	}
 
 	@Override
 	public void createRecept(ReceptDTO recept) throws DALException {
-		// TODO Auto-generated method stub
-		
+		try {
+			connector.doUpdate(
+				"INSERT INTO recept (recept_id, recept_navn) VALUES " +
+				"(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "')"
+			);
+		} catch ( SQLIntegrityConstraintViolationException e) {
+			e.printStackTrace();
+			throw new DALException("Duplicate entry");
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void updateRecept(ReceptDTO recept) throws DALException {
-		// TODO Auto-generated method stub
-		
+		try {
+			connector.doUpdate(
+					"UPDATE recept SET  recept_navn = '" + recept.getReceptNavn() + "' WHERE recept_id = " +
+					recept.getReceptId()
+			);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
 }
