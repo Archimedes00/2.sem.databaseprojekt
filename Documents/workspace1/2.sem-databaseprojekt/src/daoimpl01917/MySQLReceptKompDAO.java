@@ -48,20 +48,47 @@ public class MySQLReceptKompDAO implements ReceptKompDAO {
 
 	@Override
 	public List<ReceptKompDTO> getReceptKompList() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		List<ReceptKompDTO> list = new ArrayList<ReceptKompDTO>();
+		try
+		{
+			ResultSet rs = connector.doQuery("SELECT * FROM receptkomponent");
+			while (rs.next()) 
+			{
+				list.add (new ReceptKompDTO(rs.getInt("recept_id"), rs.getInt("raavare_id"), rs.getDouble("nom_netto"), rs.getDouble("tolerance")));
+			}
+		}
+		catch (SQLException e) { throw new DALException(e); }
+		return list;
 	}
 
 	@Override
 	public void createReceptKomp(ReceptKompDTO receptkomponent) throws DALException {
-		// TODO Auto-generated method stub
-		
+		try
+		{
+			connector.doUpdate("INSERT INTO receptkomponent(recept_id, raavare_id, nom_netto, tolerance) VALUES " +
+					"(" + receptkomponent.getReceptId() + ", '" + receptkomponent.getRaavareId() + "', '" + receptkomponent.getNomNetto() + "', '" + 
+					receptkomponent.getTolerance() + "')"
+					);
+		}
+			catch	( SQLIntegrityConstraintViolationException e) {
+				e.printStackTrace();
+				throw new DALException("Duplicate entry");
+			} catch(SQLException e){
+				e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void updateReceptKomp(ReceptKompDTO receptkomponent) throws DALException {
-		// TODO Auto-generated method stub
-		
+		try {
+			connector.doUpdate(
+					"UPDATE receptkomponent SET nom_netto = '" + receptkomponent.getNomNetto() + "', tolerance =  '" + receptkomponent.getTolerance() + 
+					" WHERE recept_id = " + receptkomponent.getReceptId() + " and raavare_id = " + receptkomponent.getRaavareId()
+			);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
