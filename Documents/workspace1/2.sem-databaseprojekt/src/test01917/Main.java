@@ -1,8 +1,23 @@
 package test01917;
 
 import daoimpl01917.MySQLOperatoerDAO;
+import daoimpl01917.MySQLProduktBatchDAO;
+import daoimpl01917.MySQLProduktBatchKompDAO;
+import daoimpl01917.MySQLRaavareBatchDAO;
+import daoimpl01917.MySQLRaavareDAO;
+import daoimpl01917.MySQLReceptDAO;
+import daoimpl01917.MySQLReceptKompDAO;
+
 import daointerfaces01917.DALException;
 import dto01917.OperatoerDTO;
+import dto01917.ProduktBatchDTO;
+import dto01917.ProduktBatchKompDTO;
+import dto01917.RaavareBatchDTO;
+import dto01917.RaavareDTO;
+import dto01917.ReceptDTO;
+import dto01917.ReceptKompDTO;
+
+
 
 import java.sql.SQLException;
 
@@ -43,5 +58,13 @@ public class Main {
 		try { System.out.println(opr.getOperatoer(5)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }		
 
+		System.out.println("Raavare nummer 3:");
+		MySQLRaavareDAO raavare = new MySQLRaavareDAO();
+		try { System.out.println(raavare.getRaavare(3)); }
+		catch (DALException e) { System.out.println(e.getMessage()); }
+		
+		System.out.println("Raavare nummer 6:");
+		try { System.out.println(raavare.getRaavare(6)); }
+		catch (DALException e) { System.out.println(e.getMessage()); }
 	}
 }

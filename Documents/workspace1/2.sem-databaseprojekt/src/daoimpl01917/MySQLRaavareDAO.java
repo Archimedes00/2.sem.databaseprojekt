@@ -25,7 +25,7 @@ public class MySQLRaavareDAO implements RaavareDAO {
 		 try {
 		    	ResultSet rs = connector.doQuery("SELECT * FROM raavare WHERE raavare_id = " + raavareId);
 		    	if (!rs.first()) throw new DALException("Identifikationsnummeret " + raavareId + " findes ikke");
-		    	return new RaavareDTO (rs.getInt("rb_id"), rs.getString("raavare_id"), rs.getString("maengde"));
+		    	return new RaavareDTO (rs.getInt("raavare_id"), rs.getString("raavare_navn"), rs.getString("leverandoer"));
 		    }
 		    catch (SQLException e) {throw new DALException(e); }
 			
