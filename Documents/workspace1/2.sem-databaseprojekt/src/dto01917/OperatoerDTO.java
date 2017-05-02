@@ -18,15 +18,18 @@ public class OperatoerDTO
 	/** Operatoer cpr-nr 10 karakterer */
 	String cpr;                 
 	/** Operatoer password min. 7 max. 8 karakterer */
-	String password;            
+	String password;        
+	/** Operatoer status; 1 for aktiv, 0 for inaktiv */
+	int status;
 
-	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password)
+	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int status)
 	{
 		this.oprId = oprId;
 		this.oprNavn = oprNavn;
 		this.ini = ini;
 		this.cpr = cpr;
 		this.password = password;
+		this.status = status;
 	}
 	
     public OperatoerDTO(OperatoerDTO opr)
@@ -36,9 +39,12 @@ public class OperatoerDTO
     	this.ini = opr.getIni();
     	this.cpr = opr.getCpr();
     	this.password = opr.getPassword();
+    	this.status = opr.getStatus();
     }
     
-    public int getOprId() { return oprId; }
+    public int getStatus() { return status;}
+    public void setStatus(int status) {this.status = status; }
+	public int getOprId() { return oprId; }
 	public void setOprId(int oprId) { this.oprId = oprId; }
 	public String getOprNavn() { return oprNavn; }
 	public void setOprNavn(String oprNavn) { this.oprNavn = oprNavn; }
@@ -48,5 +54,5 @@ public class OperatoerDTO
 	public void setCpr(String cpr) { this.cpr = cpr; }
 	public String getPassword() { return password; }
 	public void setPassword(String password) { this.password = password; }
-	public String toString() { return oprId + "\t" + oprNavn + "\t" + ini + "\t" + cpr + "\t" + password; }
+	public String toString() { return oprId + "\t" + oprNavn + "\t" + ini + "\t" + cpr + "\t" + password + "\t" + status; }
 }

@@ -33,7 +33,7 @@ public class Main {
 		catch (DALException e) { System.out.println(e.getMessage()); }
 
 		System.out.println("Indsaettelse af ny operatoer med opr_id =  4");
-		OperatoerDTO oprDTO = new OperatoerDTO(4,"Don Juan","DJ","000000-0000","iloveyou");
+		OperatoerDTO oprDTO = new OperatoerDTO(4,"Don Juan","DJ","000000-0000","iloveyou",1);
 		try { opr.createOperatoer(oprDTO); }
 		catch (DALException e) { System.out.println(e.getMessage()); }	
 
@@ -54,6 +54,10 @@ public class Main {
 		try { System.out.println(opr.getOperatoerList()); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 
+		System.out.println("Deactivating operatoer nummer 4");
+		try { opr.deactivateOperatoer(oprDTO); }
+		catch (DALException e) { System.out.println(e.getMessage()); }
+		
 		System.out.println("Operatoer nummer 5:");
 		try { System.out.println(opr.getOperatoer(5)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }		
