@@ -596,17 +596,17 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the ID of the ProductBatch");
                 	  NumberInput = scan.nextInt();
-                	  PBatchDTO.setPbId(NumberInput);
+                	  this.PBatchDTO.setPbId(NumberInput);
                 	  
                 	  System.out.println("Please set the status of the ProductBatch");
                 	  NumberInput = scan.nextInt();
-                	  PBatchDTO.setStatus(NumberInput);
+                	  this.PBatchDTO.setStatus(NumberInput);
                 	  
                 	  System.out.println("Please type in the receptId of the ProductBatch");
                 	  NumberInput = scan.nextInt();
-                	  PBatchDTO.setReceptId(NumberInput);
+                	  this.PBatchDTO.setReceptId(NumberInput);
                 	  
-                	  PBatchDAO.createProduktBatch(this.PBatchDTO);
+                	  this.PBatchDAO.createProduktBatch(this.PBatchDTO);
                 	  
                       break;
                   case 4:
@@ -614,17 +614,17 @@ public class TUI implements ITUI
                 	  System.out.println("Please type in the ID of the ProductBatch you want to update");
                 	  NumberInput = scan.nextInt();
                 	  
-                	  PBatchDTO.setPbId(NumberInput);
+                	  this.PBatchDTO.setPbId(NumberInput);
                 	  
                 	  System.out.println("Please update the status of the ProductBatch");
                 	  NumberInput = scan.nextInt();
-                	  PBatchDTO.setStatus(NumberInput);
+                	  this.PBatchDTO.setStatus(NumberInput);
                 	  
                 	  System.out.println("Please type in the new receptId of the ProductBatch");
                 	  NumberInput = scan.nextInt();
-                	  PBatchDTO.setReceptId(NumberInput);
+                	  this.PBatchDTO.setReceptId(NumberInput);
                 	  
-                	  PBatchDAO.updateProduktBatch(this.PBatchDTO);
+                	  this.PBatchDAO.updateProduktBatch(this.PBatchDTO);
                 	  
                       break;
                   case 5:
