@@ -26,9 +26,20 @@ import connector01917.Connector;
 public class Main {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		new Connector();
+		
+		MySQLOperatoerDAO opr = new MySQLOperatoerDAO();
+		MySQLProduktBatchDAO produktbatch = new MySQLProduktBatchDAO();
+		MySQLProduktBatchKompDAO produktbatchKomp = new MySQLProduktBatchKompDAO();
+		MySQLRaavareBatchDAO raavareBatch = new MySQLRaavareBatchDAO();
+		MySQLRaavareDAO raavare = new MySQLRaavareDAO();
+		MySQLReceptDAO recept = new MySQLReceptDAO();
+		MySQLReceptKompDAO receptKomp = new MySQLReceptKompDAO();
+		
+		
+		
+		
 
 		System.out.println("Operatoer nummer 3:");
-		MySQLOperatoerDAO opr = new MySQLOperatoerDAO();
 		try { System.out.println(opr.getOperatoer(3)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 
@@ -62,13 +73,16 @@ public class Main {
 		try { System.out.println(opr.getOperatoer(5)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }		
 
+		
+		
+		
+		
 		System.out.println("Raavare nummer 3:");
-		MySQLRaavareDAO raavare = new MySQLRaavareDAO();
 		try { System.out.println(raavare.getRaavare(3)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 		
-		System.out.println("Raavare nummer 6:");
-		try { System.out.println(raavare.getRaavare(6)); }
+		System.out.println("Raavare nummer 10:");
+		try { System.out.println(raavare.getRaavare(10)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 	}
 }
