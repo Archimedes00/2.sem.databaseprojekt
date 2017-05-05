@@ -10,40 +10,30 @@ import daoimpl01917.MySQLRaavareBatchDAO;
 import daoimpl01917.MySQLRaavareDAO;
 import daoimpl01917.MySQLReceptDAO;
 import daoimpl01917.MySQLReceptKompDAO;
-import daointerfaces01917.AdminDAO;
 import daointerfaces01917.DALException;
-import daointerfaces01917.ForemanDAO;
-import daointerfaces01917.OperatoerDAO;
-import daointerfaces01917.PharmacistDAO;
 import daointerfaces01917.ProduktBatchDAO;
 import daointerfaces01917.ProduktBatchKompDAO;
 import daointerfaces01917.RaavareBatchDAO;
 import daointerfaces01917.RaavareDAO;
 import daointerfaces01917.ReceptDAO;
 import daointerfaces01917.ReceptKompDAO;
-import dto01917.AdminDTO;
-import dto01917.ForemanDTO;
-import dto01917.OperatoerDTO;
-import dto01917.PharmacistDTO;
+import daointerfaces01917.UsersDAO;
 import dto01917.ProduktBatchDTO;
 import dto01917.ProduktBatchKompDTO;
 import dto01917.RaavareBatchDTO;
 import dto01917.RaavareDTO;
 import dto01917.ReceptDTO;
 import dto01917.ReceptKompDTO;
-
-
-
+import dto01917.UsersDTO;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import connector01917.Connector;
 
 public class Main 
 {
-	private Object DAO;
-	private Object DTO;
+	private UsersDAO DAO;
+	private UsersDTO DTO;
 	int input;
 	Scanner scan = new Scanner(System.in);
 	
@@ -79,29 +69,29 @@ public class Main
         {
             case 0:	
             	{
-            		OperatoerDAO DAO = new MySQLOperatoerDAO();
-            		OperatoerDTO DTO = new OperatoerDTO(0, null, null, null, null); //Initialising the object//
+            		UsersDAO DAO = new MySQLOperatoerDAO();
+            		UsersDTO DTO = new UsersDTO(0, null, null, null, null); //Initialising the object//
             		startOperationOperator(DAO, DTO);
             		break;
                 }
             case 1:	
         		{
-        			PharmacistDAO DAO = new MySQLPharmacistDAO();
-        			PharmacistDTO DTO = new PharmacistDTO(0, null, null, null, null); //Initialising the object//
+        			UsersDAO DAO = new MySQLPharmacistDAO();
+        			UsersDTO DTO = new UsersDTO(0, null, null, null, null); //Initialising the object//
         			startOperationOperator(DAO, DTO);
         			break;
             	}
             case 2:	
         		{
-        			ForemanDAO DAO = new MySQLForemanDAO();
-        			ForemanDTO DTO = new ForemanDTO(0, null, null, null, null); //Initialising the object//
+        			UsersDAO DAO = new MySQLForemanDAO();
+        			UsersDTO DTO = new UsersDTO(0, null, null, null, null); //Initialising the object//
         			startOperationOperator(DAO, DTO);
         			break;
             	}
             case 3:	
         		{
-        			AdminDAO DAO = new MySQLAdminDAO();
-        			AdminDTO DTO = new AdminDTO(0, null, null, null, null); //Initialising the object//
+        			UsersDAO DAO = new MySQLAdminDAO();
+        			UsersDTO DTO = new UsersDTO(0, null, null, null, null); //Initialising the object//
         			startOperationOperator(DAO, DTO);
         			break;
             	}
@@ -196,7 +186,7 @@ public class Main
 
 	
 	
-	public void startOperationOperator (Object DAO, Object DTO)
+	public void startOperationOperator (UsersDAO DAO, UsersDTO DTO)
 	{	
 		do 
 		{
@@ -204,7 +194,7 @@ public class Main
 			{
 			this.DAO = DAO;
 			this.DTO = DTO;
-		
+			
              System.out.println("============================");
              System.out.println("|       MENU SELECTION     |");
              System.out.println("============================");
@@ -276,7 +266,7 @@ public class Main
 
 		try 
 		{
-			DAO.createOperatoer(DTO);
+			DAO.createUsers(DTO);
 		} catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
@@ -319,10 +309,10 @@ public class Main
                      System.out.println("Enter new user ID: ");
                      int newID = scan.nextInt();
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUsers(ID);
                      this.DTO.setOprId(newID);
                      
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUsers(this.DTO);
              
                      break;
                  case 2:
@@ -336,10 +326,10 @@ public class Main
                      System.out.println("Enter new user name: ");
                      String newName = scan.next();
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUsers(ID);
                      this.DTO.setOprNavn(newName);
                      
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUsers(this.DTO);
                      
                      break;
                  case 3:
@@ -353,10 +343,10 @@ public class Main
                      System.out.println("Enter new user initials: ");
                      String newIni = scan.next();
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUsers(ID);
                      this.DTO.setIni(newIni);
                      
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUsers(this.DTO);
                   
                      break;
                  case 4:
@@ -383,9 +373,9 @@ public class Main
                            }
                      }
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUsers(ID);
                      this.DTO.addRole(newRole);
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUsers(this.DTO);
                      break;
                 	 
                  case 5:
@@ -399,10 +389,10 @@ public class Main
                      System.out.println("Enter new user CPR: ");
                      String newCPR = scan.next();
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUsers(ID);
                      this.DTO.setCpr(newCPR);
                      
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUsers(this.DTO);
                      
                      break;
                      
@@ -414,8 +404,8 @@ public class Main
                      System.out.println("Enter User ID: ");
                      ID = scan.nextInt();
                      
-                     this.DTO = DAO.getOperatoer(ID);
-                     DAO.updateOperatoer(this.DTO);
+                     this.DTO = DAO.getUsers(ID);
+                     DAO.updateUsers(this.DTO);
                      break;
                      
                  case 7:
@@ -437,9 +427,9 @@ public class Main
 			System.out.println("|       LIST USERS         |");
 			System.out.println("============================");
 
-			for (int i = 0; i < DAO.getOperatoerList().size(); i++)
-				System.out.println("User ID: " + DAO.getOperatoerList().get(i).getOprId() + "\t User name: "
-						+ DAO.getOperatoerList().get(i).getOprNavn());
+			for (int i = 0; i < DAO.getUsersList().size(); i++)
+				System.out.println("User ID: " + DAO.getUsersList().get(i).getOprId() + "\t User name: "
+						+ DAO.getUsersList().get(i).getOprNavn());
 
 		} catch (DALException e) {
 			System.out.println(e);
@@ -452,9 +442,9 @@ public class Main
 		try 
 		{
 			System.out.print("Unavailable user IDs: {");
-			for (int i = 0; i < DAO.getOperatoerList().size(); i++) 
+			for (int i = 0; i < DAO.getUsersList().size(); i++) 
 			{
-				System.out.print(DAO.getOperatoerList().get(i).getOprId() + ", ");
+				System.out.print(DAO.getUsersList().get(i).getOprId() + ", ");
 			}
 			System.out.print("...}");
 			System.out.println();
@@ -576,13 +566,5 @@ public class Main
 	}
 
      public void quitProgram(){}
- 
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

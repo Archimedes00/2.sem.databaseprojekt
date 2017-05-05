@@ -1,35 +1,32 @@
 package daoimpl01917;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
-
 import connector01917.Connector;
 import daointerfaces01917.DALException;
-import daointerfaces01917.ForemanDAO;
-import dto01917.ForemanDTO;
-import dto01917.OperatoerDTO;
+import daointerfaces01917.UsersDAO;
+import dto01917.UsersDTO;
 
-public class MySQLForemanDAO implements ForemanDAO{
+public class MySQLForemanDAO implements UsersDAO{
 	
 	private Connector connector;
 	public MySQLForemanDAO(){
 		connector = new Connector();
 	}
 	
-	public ForemanDTO getForeman(int oprId) throws DALException {
+	public UsersDTO getUsers(int oprId) throws DALException {
 	    try {
 	    	ResultSet rs = connector.doQuery("SELECT * FROM Foreman WHERE opr_id = " + oprId);
 	    	if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke");
-	    	return new ForemanDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
+	    	return new UsersDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
 	    }
 	    catch (SQLException e) {throw new DALException(e); }
 		
 	}
 	
-	public void createForeman(ForemanDTO opr) throws DALException {		
+	public void createUsers(UsersDTO opr) throws DALException {		
 			try {
 				connector.doUpdate(
 					"INSERT INTO Foreman(opr_id, opr_navn, ini, cpr, password) VALUES " +
@@ -44,7 +41,7 @@ public class MySQLForemanDAO implements ForemanDAO{
 			}
 	}
 	
-	public void updateForeman(ForemanDTO opr) throws DALException {
+	public void updateUsers(UsersDTO opr) throws DALException {
 		try {
 			connector.doUpdate(
 					"UPDATE Foreman SET  opr_navn = '" + opr.getOprNavn() + "', ini =  '" + opr.getIni() + 
@@ -57,14 +54,14 @@ public class MySQLForemanDAO implements ForemanDAO{
 		}
 	}
 	
-	public List<ForemanDTO> getForemanList() throws DALException {
-		List<ForemanDTO> list = new ArrayList<ForemanDTO>();
+	public List<UsersDTO> getUsersList() throws DALException {
+		List<UsersDTO> list = new ArrayList<UsersDTO>();
 		try
 		{
 			ResultSet rs = connector.doQuery("SELECT * FROM Foreman");
 			while (rs.next()) 
 			{
-				list.add(new ForemanDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password")));
+				list.add(new UsersDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }

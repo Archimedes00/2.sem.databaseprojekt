@@ -5,32 +5,30 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
-
 import connector01917.Connector;
 import daointerfaces01917.DALException;
-import daointerfaces01917.OperatoerDAO;
-import daointerfaces01917.PharmacistDAO;
-import dto01917.OperatoerDTO;
-import dto01917.PharmacistDTO;
+import daointerfaces01917.UsersDAO;
+import dto01917.UsersDTO;
 
-public class MySQLPharmacistDAO implements PharmacistDAO {
+
+public class MySQLPharmacistDAO implements UsersDAO {
 
 private Connector connector;
 public MySQLPharmacistDAO(){
 	connector = new Connector();
 }
 
-public PharmacistDTO getPharmacist(int oprId) throws DALException {
+public UsersDTO getUsers(int oprId) throws DALException {
     try {
     	ResultSet rs = connector.doQuery("SELECT * FROM Pharmacist WHERE opr_id = " + oprId);
     	if (!rs.first()) throw new DALException("Pharmacist " + oprId + " findes ikke");
-    	return new PharmacistDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
+    	return new UsersDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
     }
     catch (SQLException e) {throw new DALException(e); }
 	
 }
 
-public void createPharmacist(PharmacistDTO opr) throws DALException {		
+public void createUsers(UsersDTO opr) throws DALException {		
 		try {
 			connector.doUpdate(
 				"INSERT INTO Pharmacist(opr_id, opr_navn, ini, cpr, password) VALUES " +
@@ -45,7 +43,7 @@ public void createPharmacist(PharmacistDTO opr) throws DALException {
 		}
 }
 
-public void updatePharmacist(PharmacistDTO opr) throws DALException {
+public void updateUsers(UsersDTO opr) throws DALException {
 	try {
 		connector.doUpdate(
 				"UPDATE Pharmacist SET  opr_navn = '" + opr.getOprNavn() + "', ini =  '" + opr.getIni() + 
@@ -58,14 +56,14 @@ public void updatePharmacist(PharmacistDTO opr) throws DALException {
 	}
 }
 
-public List<PharmacistDTO> getPharmacistList() throws DALException {
-	List<PharmacistDTO> list = new ArrayList<PharmacistDTO>();
+public List<UsersDTO> getUsersList() throws DALException {
+	List<UsersDTO> list = new ArrayList<UsersDTO>();
 	try
 	{
 		ResultSet rs = connector.doQuery("SELECT * FROM Pharmacist");
 		while (rs.next()) 
 		{
-			list.add(new PharmacistDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password")));
+			list.add(new UsersDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password")));
 		}
 	}
 	catch (SQLException e) { throw new DALException(e); }
