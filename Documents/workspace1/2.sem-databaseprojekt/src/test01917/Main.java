@@ -1,22 +1,30 @@
 package test01917;
 
+import daoimpl01917.MySQLAdminDAO;
+import daoimpl01917.MySQLForemanDAO;
 import daoimpl01917.MySQLOperatoerDAO;
+import daoimpl01917.MySQLPharmacistDAO;
 import daoimpl01917.MySQLProduktBatchDAO;
 import daoimpl01917.MySQLProduktBatchKompDAO;
 import daoimpl01917.MySQLRaavareBatchDAO;
 import daoimpl01917.MySQLRaavareDAO;
 import daoimpl01917.MySQLReceptDAO;
 import daoimpl01917.MySQLReceptKompDAO;
-
+import daointerfaces01917.AdminDAO;
 import daointerfaces01917.DALException;
+import daointerfaces01917.ForemanDAO;
 import daointerfaces01917.OperatoerDAO;
+import daointerfaces01917.PharmacistDAO;
 import daointerfaces01917.ProduktBatchDAO;
 import daointerfaces01917.ProduktBatchKompDAO;
 import daointerfaces01917.RaavareBatchDAO;
 import daointerfaces01917.RaavareDAO;
 import daointerfaces01917.ReceptDAO;
 import daointerfaces01917.ReceptKompDAO;
+import dto01917.AdminDTO;
+import dto01917.ForemanDTO;
 import dto01917.OperatoerDTO;
+import dto01917.PharmacistDTO;
 import dto01917.ProduktBatchDTO;
 import dto01917.ProduktBatchKompDTO;
 import dto01917.RaavareBatchDTO;
@@ -34,8 +42,8 @@ import connector01917.Connector;
 
 public class Main 
 {
-	private OperatoerDAO DAO;
-	private OperatoerDTO DTO;
+	private Object DAO;
+	private Object DTO;
 	int input;
 	Scanner scan = new Scanner(System.in);
 	
@@ -51,13 +59,16 @@ public class Main
         System.out.println("|       MENU SELECTION     	|");
         System.out.println("=============================");
         System.out.println("| Options:                	|");
-        System.out.println("|      1. Operatoer			|");
-        System.out.println("|      2. ProduktBatch     	|");
-        System.out.println("|      3. ProduktBatchKomp 	|");
-        System.out.println("|      4. Recept		    |");
-        System.out.println("|      5. ReceptKomp		|");
-        System.out.println("|	   6. RaavareBatch		|");
-        System.out.println("|	   7. Raavare  		    |");
+        System.out.println("|      0. Operatoer			|");
+        System.out.println("|      1. Pharmacist		|");
+        System.out.println("|      2. Foreman			|");
+        System.out.println("|      3. Admin				|");
+        System.out.println("|      4. ProduktBatch     	|");
+        System.out.println("|      5. ProduktBatchKomp 	|");
+        System.out.println("|      6. Recept		    |");
+        System.out.println("|      7. ReceptKomp		|");
+        System.out.println("|	   8. RaavareBatch		|");
+        System.out.println("|	   9. Raavare  		    |");
         System.out.println("|	    			 		|");
         System.out.println("=============================");
         
@@ -66,45 +77,66 @@ public class Main
 		
         switch (chooseRole) 
         {
-            case 1:	
+            case 0:	
             	{
             		OperatoerDAO DAO = new MySQLOperatoerDAO();
             		OperatoerDTO DTO = new OperatoerDTO(0, null, null, null, null); //Initialising the object//
-            		startOperation(DAO, DTO);
+            		startOperationOperator(DAO, DTO);
             		break;
                 }
+            case 1:	
+        		{
+        			PharmacistDAO DAO = new MySQLPharmacistDAO();
+        			PharmacistDTO DTO = new PharmacistDTO(0, null, null, null, null); //Initialising the object//
+        			startOperationOperator(DAO, DTO);
+        			break;
+            	}
             case 2:	
+        		{
+        			ForemanDAO DAO = new MySQLForemanDAO();
+        			ForemanDTO DTO = new ForemanDTO(0, null, null, null, null); //Initialising the object//
+        			startOperationOperator(DAO, DTO);
+        			break;
+            	}
+            case 3:	
+        		{
+        			AdminDAO DAO = new MySQLAdminDAO();
+        			AdminDTO DTO = new AdminDTO(0, null, null, null, null); //Initialising the object//
+        			startOperationOperator(DAO, DTO);
+        			break;
+            	}
+            case 4:	
             	{
             		ProduktBatchDAO DAO = new MySQLProduktBatchDAO();
             		ProduktBatchDTO DTO = new ProduktBatchDTO(0, 0, 0);
                 	break;
                 }
-            case 3:
+            case 5:
             	{
             		ProduktBatchKompDAO DAO = new MySQLProduktBatchKompDAO();
             		ProduktBatchKompDTO DTO = new ProduktBatchKompDTO(0, 0, 0, 0, 0);
             		break;
             	}
                 
-            case 4:
+            case 6:
             	{
             		ReceptDAO DAO = new MySQLReceptDAO();
             		ReceptDTO DTO = new ReceptDTO(0, null);
             		break;
             	}
-            case 5:
+            case 7:
         		{
         			ReceptKompDAO DAO = new MySQLReceptKompDAO();
         			ReceptKompDTO DTO = new ReceptKompDTO(0, 0, 0, 0);
         			break;
         		}
-            case 6:
+            case 8:
     			{
     				RaavareBatchDAO DAO = new MySQLRaavareBatchDAO();
     				RaavareBatchDTO DTO = new RaavareBatchDTO(0, 0, 0);
     				break;
     			}
-            case 7:
+            case 9:
 				{
 					RaavareDAO DAO = new MySQLRaavareDAO();
 					RaavareDTO DTO = new RaavareDTO(0, null, null);
@@ -164,7 +196,7 @@ public class Main
 
 	
 	
-	public void startOperation (OperatoerDAO DAO, OperatoerDTO DTO)
+	public void startOperationOperator (Object DAO, Object DTO)
 	{	
 		do 
 		{

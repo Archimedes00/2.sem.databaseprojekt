@@ -2,11 +2,12 @@ package daointerfaces01917;
 
 import java.util.List;
 
+import dto01917.ForemanDTO;
 import dto01917.OperatoerDTO;
 
 public interface ForemanDAO {
-	OperatoerDTO getOperatoer(int oprId) throws DALException;
-	List<OperatoerDTO> getOperatoerList() throws DALException;
-	void createOperatoer(OperatoerDTO opr) throws DALException;
-	void updateOperatoer(OperatoerDTO opr) throws DALException;
+	ForemanDTO getForeman(int oprId) throws DALException;
+	List<ForemanDTO> getForemanList() throws DALException;
+	void createForeman(ForemanDTO opr) throws DALException;
+	void updateForeman(ForemanDTO opr) throws DALException;
 }

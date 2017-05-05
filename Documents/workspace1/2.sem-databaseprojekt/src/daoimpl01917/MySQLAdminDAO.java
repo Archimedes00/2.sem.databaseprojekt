@@ -7,27 +7,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connector01917.Connector;
+import daointerfaces01917.AdminDAO;
 import daointerfaces01917.DALException;
+import dto01917.AdminDTO;
 import dto01917.OperatoerDTO;
 
-public class MySQLAdminDAO {
+public class MySQLAdminDAO implements AdminDAO{
 	
 	private Connector connector;
 	public MySQLAdminDAO(){
 		connector = new Connector();
 	}
 	
-	public OperatoerDTO getOperatoer(int oprId) throws DALException {
+	public AdminDTO getAdmin(int oprId) throws DALException {
 	    try {
 	    	ResultSet rs = connector.doQuery("SELECT * FROM Admin WHERE opr_id = " + oprId);
 	    	if (!rs.first()) throw new DALException("Admin " + oprId + " findes ikke");
-	    	return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
+	    	return new AdminDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
 	    }
 	    catch (SQLException e) {throw new DALException(e); }
 		
 	}
 	
-	public void createOperatoer(OperatoerDTO opr) throws DALException {		
+	public void createAdmin(AdminDTO opr) throws DALException {		
 			try {
 				connector.doUpdate(
 					"INSERT INTO Admin(opr_id, opr_navn, ini, cpr, password) VALUES " +
@@ -42,7 +44,7 @@ public class MySQLAdminDAO {
 			}
 	}
 	
-	public void updateOperatoer(OperatoerDTO opr) throws DALException {
+	public void updateAdmin(AdminDTO opr) throws DALException {
 		try {
 			connector.doUpdate(
 					"UPDATE Admin SET  opr_navn = '" + opr.getOprNavn() + "', ini =  '" + opr.getIni() + 
@@ -55,14 +57,14 @@ public class MySQLAdminDAO {
 		}
 	}
 	
-	public List<OperatoerDTO> getOperatoerList() throws DALException {
-		List<OperatoerDTO> list = new ArrayList<OperatoerDTO>();
+	public List<AdminDTO> getAdminList() throws DALException {
+		List<AdminDTO> list = new ArrayList<AdminDTO>();
 		try
 		{
 			ResultSet rs = connector.doQuery("SELECT * FROM Admin");
 			while (rs.next()) 
 			{
-				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password")));
+				list.add(new AdminDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }
