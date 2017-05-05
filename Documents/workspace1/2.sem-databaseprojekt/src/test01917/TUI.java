@@ -32,10 +32,16 @@ public class TUI implements ITUI
 {
 	private UsersDAO DAO;
 	private UsersDTO DTO;
+	private ProduktBatchDAO PBatchDAO;
+	private ProduktBatchDTO PBatchDTO;
+	
+	
+	
 	int input;
 	Scanner scan = new Scanner(System.in);
 	
-	public void Selector(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException 
+
+	public void Selector()
 	{
 		new Connector();
 
@@ -65,13 +71,14 @@ public class TUI implements ITUI
             	{
             		UsersDAO DAO = new MySQLOperatoerDAO();
             		UsersDTO DTO = new UsersDTO(0, null, null, null, null); //Initialising the object//
-            		startOperation(DAO, DTO);
+            		Usermenu(DAO, DTO);
             		break;
                 }
             case 2:	
             	{
-            		ProduktBatchDAO DAO = new MySQLProduktBatchDAO();
-            		ProduktBatchDTO DTO = new ProduktBatchDTO(0, 0, 0);
+            		ProduktBatchDAO PBatchDAO = new MySQLProduktBatchDAO();
+            		ProduktBatchDTO PBatchDTO = new ProduktBatchDTO(0, 0, 0);
+            		ProduktBatchmenu(PBatchDAO, PBatchDTO);
                 	break;
                 }
             case 3:
@@ -159,7 +166,7 @@ public class TUI implements ITUI
 
 	
 	
-	public void startOperation(UsersDAO DAO, UsersDTO DTO)
+	public void Usermenu(UsersDAO DAO, UsersDTO DTO)
 	{	
 		do 
 		{
@@ -539,6 +546,105 @@ public class TUI implements ITUI
 	}
 
      public void quitProgram(){}
+     
+     public void ProduktBatchmenu(ProduktBatchDAO PBatchDAO, ProduktBatchDTO PBatchDTO)
+     {
+    	 int NumberInput;
+    	 String StringInput;
+    	 
+    	 do 
+ 		{
+ 			try 
+ 			{
+ 			this.PBatchDAO = PBatchDAO;
+ 			this.PBatchDTO = PBatchDTO;
+ 			
+ 			
+ 			
+              System.out.println("============================");
+              System.out.println("|       MENU SELECTION     |");
+              System.out.println("============================");
+              System.out.println("| Options:                 |");
+              System.out.println("| 1. Get ProduktBatch  	 |");
+              System.out.println("| 2. Get ProduktBatchList  |");
+              System.out.println("| 3. Create ProduktBatch   |");
+              System.out.println("| 4. Update ProduktBatch   |");
+              System.out.println("| 5. Exit         	 	 |");
+              System.out.println("============================");
+           
+              input = scan.nextInt();
+              
+              	 
+              switch (input) 
+              {
+                  case 1:
+                	  
+                	  System.out.println("Please type in the id of the product batch");
+                	  NumberInput = scan.nextInt();
+                	  System.out.println(PBatchDAO.getProduktBatch(NumberInput));
+                	  
+                      break;
+                  case 2:
+                	  
+                	  for (int i = 0; i < PBatchDAO.getProduktBatchList().size(); i++)
+                	  {
+                		  System.out.print(PBatchDAO.getProduktBatchList().get(i).getPbId() + ", ");
+          		      }
+                	  
+                      break;
+                  case 3:
+                	  
+                	  System.out.println("Please type in the ID of the ProductBatch");
+                	  NumberInput = scan.nextInt();
+                	  PBatchDTO.setPbId(NumberInput);
+                	  
+                	  System.out.println("Please set the status of the ProductBatch");
+                	  NumberInput = scan.nextInt();
+                	  PBatchDTO.setStatus(NumberInput);
+                	  
+                	  System.out.println("Please type in the receptId of the ProductBatch");
+                	  NumberInput = scan.nextInt();
+                	  PBatchDTO.setReceptId(NumberInput);
+                	  
+                	  PBatchDAO.createProduktBatch(this.PBatchDTO);
+                	  
+                      break;
+                  case 4:
+                	  
+                	  System.out.println("Please type in the ID of the ProductBatch you want to update");
+                	  NumberInput = scan.nextInt();
+                	  
+                	  PBatchDTO.setPbId(NumberInput);
+                	  
+                	  System.out.println("Please update the status of the ProductBatch");
+                	  NumberInput = scan.nextInt();
+                	  PBatchDTO.setStatus(NumberInput);
+                	  
+                	  System.out.println("Please type in the new receptId of the ProductBatch");
+                	  NumberInput = scan.nextInt();
+                	  PBatchDTO.setReceptId(NumberInput);
+                	  
+                	  PBatchDAO.updateProduktBatch(this.PBatchDTO);
+                	  
+                      break;
+                  case 5:
+                      quitProgram();
+                      break;
+                  default:
+                      System.out.println("Invalid entry");
+                      break;
+              }
+         
+ 			} catch (Exception e) 
+ 			{
+ 				e.getMessage();
+ 	   		}
+ 			
+ 			scan.nextLine();
+ 			
+ 		} while (input != 5);			
+    	 
+     }
 
 }
 
