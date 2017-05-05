@@ -34,7 +34,8 @@ import connector01917.Connector;
 
 public class Main 
 {
-	private Object DAO;
+	private OperatoerDAO DAO;
+	private OperatoerDTO DTO;
 	int input;
 	Scanner scan = new Scanner(System.in);
 	
@@ -67,39 +68,46 @@ public class Main
         {
             case 1:	
             	{
-            		OperatoerDAO DAO = new MySQLOperatoerDAO();	
+            		OperatoerDAO DAO = new MySQLOperatoerDAO();
+            		OperatoerDTO DTO = new OperatoerDTO(0, null, null, null, null); //Initialising the object//
+            		startOperation(DAO, DTO);
             		break;
                 }
             case 2:	
             	{
             		ProduktBatchDAO DAO = new MySQLProduktBatchDAO();
+            		ProduktBatchDTO DTO = new ProduktBatchDTO(0, 0, 0);
                 	break;
                 }
             case 3:
             	{
             		ProduktBatchKompDAO DAO = new MySQLProduktBatchKompDAO();
+            		ProduktBatchKompDTO DTO = new ProduktBatchKompDTO(0, 0, 0, 0, 0);
             		break;
             	}
                 
             case 4:
             	{
             		ReceptDAO DAO = new MySQLReceptDAO();
+            		ReceptDTO DTO = new ReceptDTO(0, null);
             		break;
             	}
             case 5:
         		{
         			ReceptKompDAO DAO = new MySQLReceptKompDAO();
+        			ReceptKompDTO DTO = new ReceptKompDTO(0, 0, 0, 0);
         			break;
         		}
             case 6:
     			{
     				RaavareBatchDAO DAO = new MySQLRaavareBatchDAO();
+    				RaavareBatchDTO DTO = new RaavareBatchDTO(0, 0, 0);
     				break;
     			}
             case 7:
 				{
 					RaavareDAO DAO = new MySQLRaavareDAO();
-					
+					RaavareDTO DTO = new RaavareDTO(0, null, null);
 					break;
 				}
             default:
@@ -109,7 +117,7 @@ public class Main
         
         scan.close();
         
-        startOperation(DAO);
+        
     
         /*
 		System.out.println("Operatoer nummer 3:");
@@ -156,11 +164,14 @@ public class Main
 
 	
 	
-	public void startOperation (Object DAO)
+	public void startOperation (OperatoerDAO DAO, OperatoerDTO DTO)
 	{	
-		do {
-			try {
+		do 
+		{
+			try 
+			{
 			this.DAO = DAO;
+			this.DTO = DTO;
 		
              System.out.println("============================");
              System.out.println("|       MENU SELECTION     |");
@@ -175,7 +186,8 @@ public class Main
             
              input = scan.nextInt();
              	 
-             switch (input) {
+             switch (input) 
+             {
                  case 1:
 					 createUser();
                      break;
@@ -196,7 +208,8 @@ public class Main
                      break;
              }
         
-			} catch (Exception e) {
+			} catch (Exception e) 
+			{
 				e.getMessage();
 	   		}
 			
@@ -204,7 +217,9 @@ public class Main
 			
 		} while (input != 5);			
 	}
-	public void createUser() {
+	
+	public void createUser() 
+	{
 
 		int step = 1;
 		boolean cont = true;
@@ -213,25 +228,29 @@ public class Main
 		System.out.println("|        CREATE USER       |");
 		System.out.println("============================\n");
 		
-		while (cont) {
+		while (cont) 
+		{
 
-			try {
+			try 
+			{
 				cont = createUserIteration(step);
 				step++;
-			} catch (TUIException e) {
-				step = e.getType();
+			} catch (Exception e) 
+			{
+				//step = e.getMessage();
 				System.out.println(e.getMessage());
 			}
 		}
 
-		try {
-			userDAO.createUser(TempUser);
+		try 
+		{
+			DAO.createOperatoer(DTO);
 		} catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-     public void updateUser() throws TUIException
+     public void updateUser() throws Exception
      {
          try {
 
@@ -268,11 +287,11 @@ public class Main
                      System.out.println("Enter new user ID: ");
                      int newID = scan.nextInt();
                      
-                     this.TempUser = userDAO.getUser(ID);
-                     this.TempUser.setUserID(newID);
+                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO.setOprId(newID);
                      
-                     userDAO.updateUser(this.TempUser, 2);
-                     
+                     DAO.updateOperatoer(this.DTO);
+             
                      break;
                  case 2:
                      System.out.println("============================");
@@ -285,9 +304,10 @@ public class Main
                      System.out.println("Enter new user name: ");
                      String newName = scan.next();
                      
-                     this.TempUser = userDAO.getUser(ID);
-                     this.TempUser.setUserName(newName);
-                     userDAO.updateUser(this.TempUser, 1);
+                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO.setOprNavn(newName);
+                     
+                     DAO.updateOperatoer(this.DTO);
                      
                      break;
                  case 3:
@@ -301,10 +321,11 @@ public class Main
                      System.out.println("Enter new user initials: ");
                      String newIni = scan.next();
                      
-                     this.TempUser = userDAO.getUser(ID);
-                     this.TempUser.setIni(newIni);
-                     userDAO.updateUser(this.TempUser, 1);
+                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO.setIni(newIni);
                      
+                     DAO.updateOperatoer(this.DTO);
+                  
                      break;
                  case 4:
                 	 System.out.println("============================");
@@ -330,9 +351,9 @@ public class Main
                            }
                      }
                      
-                     this.TempUser = userDAO.getUser(ID);
-                     this.TempUser.setRoles(newRole);
-                     userDAO.updateUser(this.TempUser, 1);
+                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO.addRole(newRole);
+                     DAO.updateOperatoer(this.DTO);
                      break;
                 	 
                  case 5:
@@ -346,9 +367,10 @@ public class Main
                      System.out.println("Enter new user CPR: ");
                      String newCPR = scan.next();
                      
-                     this.TempUser = userDAO.getUser(ID);
-                     this.TempUser.setUserCpr(newCPR);
-                     userDAO.updateUser(this.TempUser, 1);
+                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO.setCpr(newCPR);
+                     
+                     DAO.updateOperatoer(this.DTO);
                      
                      break;
                      
@@ -360,9 +382,8 @@ public class Main
                      System.out.println("Enter User ID: ");
                      ID = scan.nextInt();
                      
-                     this.TempUser = userDAO.getUser(ID);
-                     userDAO.updateUser(this.TempUser, 3);
-                     
+                     this.DTO = DAO.getOperatoer(ID);
+                     DAO.updateOperatoer(this.DTO);
                      break;
                      
                  case 7:
@@ -372,7 +393,7 @@ public class Main
          }
      } catch (InputMismatchException e)
      {		String errorMessage = "Input mismatch. Please try again.";
-         throw new TUIException(errorMessage, e);
+         throw new Exception(errorMessage, e);
      } catch (DALException e) {
     	 System.out.println(e.getMessage());
      }
@@ -384,39 +405,45 @@ public class Main
 			System.out.println("|       LIST USERS         |");
 			System.out.println("============================");
 
-			for (int i = 0; i < userDAO.getUserList().size(); i++)
-				System.out.println("User ID: " + userDAO.getUserList().get(i).getUserId() + "\t User name: "
-						+ userDAO.getUserList().get(i).getUserName());
+			for (int i = 0; i < DAO.getOperatoerList().size(); i++)
+				System.out.println("User ID: " + DAO.getOperatoerList().get(i).getOprId() + "\t User name: "
+						+ DAO.getOperatoerList().get(i).getOprNavn());
 
 		} catch (DALException e) {
-			System.out.println(e.unidentifiedException);
+			System.out.println(e);
 			//e.printStackTrace();
 		}
 	}
      
-	public void listID() {
-		try {
+	public void listID() 
+	{
+		try 
+		{
 			System.out.print("Unavailable user IDs: {");
-			for (int i = 0; i < userDAO.getUserList().size(); i++) {
-				System.out.print(userDAO.getUserList().get(i).getUserId() + ", ");
+			for (int i = 0; i < DAO.getOperatoerList().size(); i++) 
+			{
+				System.out.print(DAO.getOperatoerList().get(i).getOprId() + ", ");
 			}
 			System.out.print("...}");
 			System.out.println();
-		} catch (DALException e) {
-			System.out.println(e.unidentifiedException);
+		} catch (DALException e) 
+		{
+			System.out.println(e);
 			e.printStackTrace();
 		}
 	}
 
-	public void deleteUser() {
-		try {
+	public void deleteUser() 
+	{
+		try 
+		{
 
 			System.out.println("============================");
 			System.out.println("|       DELETE USER        |");
 			System.out.println("============================");
 			System.out.println("Enter user ID: ");
 			int ID = scan.nextInt();
-			userDAO.deleteUser(ID);
+			DAO.deleteUser(ID); /*Skal lave en deaktivate Operator her*/
 			System.out.println("User has been deleted");
 
 		} catch (DALException e) {
@@ -424,40 +451,48 @@ public class Main
 		}
 	}
      
-	public boolean createUserIteration(int step) throws TUIException {
+	public boolean createUserIteration(int step) throws Exception 
+	{
 
 		boolean cont = true;
-		String errorMessage = null;
+		String errorMessage = null; //Skal lige finde ud af hvor denne skal bruges//
 		display:
 
 		try {
-			switch (step) {
+			switch (step) 
+			{
 
 			case 1:
 				errorMessage = "Input mismatch. Please try again.\n";
 				listID();
+				
 				System.out.println("Type userID: ");
+				
 				int ID = scan.nextInt();
-				TempUser.setUserID(ID);
+				
+				DTO.setOprId(ID);
 				break;
 
 			case 2:
 				System.out.println("Type user name: ");
-				String name = scan2.nextLine();
-				TempUser.setUserName(name);
+				String name = scan.nextLine();
+				
+				DTO.setOprNavn(name);
 				break;
 
 			case 3:
 				System.out.println("Type initials: ");
 				String ini = scan.next();
-				TempUser.setIni(ini);
+
+				DTO.setIni(ini);
 				break;
 
 			case 4:
 				System.out.println("Type user CPR: ");
 				scan.nextLine();
+				
 				String CPR = scan.nextLine();
-				TempUser.setUserCpr(CPR);
+				DTO.setCpr(CPR);
 				break;
 
 			case 5:
@@ -465,25 +500,29 @@ public class Main
 				System.out.println("|       ROLE SELECTION     |");
 				System.out.println("============================");
 				System.out.println("| Roles:                   |");
-				System.out.println("|      1. Operator         |");
-				System.out.println("|      2. Foreman          |");
-				System.out.println("|      3. Pharmacist       |");
-				System.out.println("|      4. Return           |");
+				System.out.println("|      1. Admin		       |");
+				System.out.println("|      2. Operator         |");
+				System.out.println("|      3. Foreman	       |");
+				System.out.println("|      4. Pharmacist       |");
+				System.out.println("|      5. Return           |");
 				System.out.println("============================");
 
 				int chooseRole = scan.nextInt();
 				switch (chooseRole) {
 				case 1:
-					TempUser.addRole("Operator"); // set Operator
+					// set Operator
+					DTO.addRole("Admin");
 					break;
 				case 2:
-					TempUser.addRole("Foreman"); // set Foreman
+					DTO.addRole("Operator"); // set Foreman
 					break;
 				case 3:
-					TempUser.addRole("Pharmacist"); // set Pharmacist
+					DTO.addRole("Foreman");
 					break;
 				case 4:
-
+					DTO.addRole("Pharmacist");
+					break;
+				case 5:
 					System.out.println("Returning...");
 					break display;
 				default:
