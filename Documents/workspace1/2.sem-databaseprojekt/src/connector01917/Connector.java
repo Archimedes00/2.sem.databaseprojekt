@@ -16,10 +16,16 @@ public class Connector {
     private  String PASSWORD;
     private Connection connection;
     
-    public Connector() 
+    public Connector(String HOST, int PORT, String DATABASE, String USERNAME, String PASSWORD) 
     {
         try 
         {
+        	this.HOST = HOST;
+        	this.PORT = PORT;
+        	this.DATABASE = DATABASE;
+        	this.USERNAME = USERNAME;
+        	this.PASSWORD = PASSWORD;
+        	
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
@@ -27,16 +33,6 @@ public class Connector {
 			e.printStackTrace();
 			System.exit(1);
 		}
-    }
-    
-    public void SetupConnector(String HOST, int PORT, String DATABASE, String USERNAME, String PASSWORD)
-    {
-    	this.HOST = HOST;
-    	this.PORT = PORT;
-    	this.DATABASE = DATABASE;
-    	this.USERNAME = USERNAME;
-    	this.PASSWORD = PASSWORD;
-    	
     }
     
     public Connection getConnection(){

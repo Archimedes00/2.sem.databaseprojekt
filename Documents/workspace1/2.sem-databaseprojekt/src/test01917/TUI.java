@@ -44,7 +44,7 @@ public class TUI implements ITUI
 	private RaavareBatchDTO RaavareBatchDTO;
 	private RaavareDAO RaavareDAO;
 	private RaavareDTO RaavareDTO;
-	private Connector C = new Connector();
+	private Connector C;
 	
 	
 	int input;
@@ -68,7 +68,8 @@ public class TUI implements ITUI
 		Username = scan.nextLine();
 		Password = scan.nextLine();
 	
-		this.C.SetupConnector(Hostname, Portnumber, Databasename, Username, Password);
+		this.C = new Connector(Hostname, Portnumber, Databasename, Username, Password);
+
 	}
 	public void Selector()
 	{
