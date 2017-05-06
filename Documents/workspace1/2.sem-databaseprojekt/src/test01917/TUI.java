@@ -657,8 +657,8 @@ public class TUI implements ITUI
               System.out.println("========================================|");
               System.out.println("| Options:                     		  |");
               System.out.println("| 1. Get specific ProduktBatchKomp      |");
-              System.out.println("| 2. Get ProduktBatchKomp List 		  |");
-              System.out.println("| 3. Get ProduktBatchKomp List          |");
+              System.out.println("| 2. Get ProduktBatchKompList 		  |");
+              System.out.println("| 3. Get ProduktBatchKompList           |");
               System.out.println("| 4. Create ProduktBatchKomp            |");
               System.out.println("| 5. Update ProduktBatchKomp         	  |");
               System.out.println("| 6. Exit					        	  |");
@@ -671,15 +671,21 @@ public class TUI implements ITUI
               {
                   case 1:
                 	  
-                	  System.out.println("Please type in the id of the product batch komp and the id for the raavarebatch");
+                	  System.out.println("Please type in the ID of the ProductBatchKomp and the ID for the RaavareBatch");
+                	  
+                	  System.out.print("ProductBatch ID:   ");
                 	  NumberInput = scan.nextInt();
+                	  scan.nextLine();
+                	  
+                	  System.out.print("RaavareBatch ID:   ");
                 	  NumberInput2 = scan.nextInt();
+                	  
                 	  System.out.println(PBatchKompDAO.getProduktBatchKomp(NumberInput, NumberInput2));
                 	 
                       break;
                   case 2:
                 	  
-                	  System.out.println("Please type in the id of the product batch komp");
+                	  System.out.println("Please type in the ID of the ProductBatchKomp");
                 	  NumberInput = scan.nextInt();
                 	 
                 	  for (int i = 0; i < PBatchKompDAO.getProduktBatchKompList(NumberInput).size(); i++)
@@ -689,7 +695,9 @@ public class TUI implements ITUI
                 	  
                       break;
                   case 3:
-                	 
+                	  
+                	  System.out.println("ProductBatchKomp full list below");
+                	  
                 	  for (int i = 0; i < PBatchKompDAO.getProduktBatchKompList().size(); i++)
                 	  {
                 		  System.out.print(PBatchKompDAO.getProduktBatchKompList().get(i) + ", ");
@@ -698,23 +706,24 @@ public class TUI implements ITUI
                       break;
                   case 4:
                 	  
-                	  System.out.println("Please type in the ID of the operator");
+                	  System.out.println("Please type in the ID of the Operator");
                 	  NumberInput = scan.nextInt();
+                	  
                 	  this.PBatchKompDTO.setOprId(NumberInput);
                 	  
-                	  System.out.println("Please set net weight of the productBatchKomp");
+                	  System.out.println("Please set net weight of the ProductBatchKomp");
                 	  NumberInput = scan.nextInt();
                 	  this.PBatchKompDTO.setNetto(NumberInput);
                 	
-                	  System.out.println("Please type in the id of the productbatch");
+                	  System.out.println("Please type in the ID of the ProductBatch");
                 	  NumberInput = scan.nextInt();
                 	  this.PBatchKompDTO.setPbId(NumberInput);
                 	  
-                	  System.out.println("Please type in the id of the raavarebatch");
+                	  System.out.println("Please type in the ID of the RaavareBatch");
                 	  NumberInput = scan.nextInt();
                 	  this.PBatchKompDTO.setRbId(NumberInput);
                 	  
-                	  System.out.println("Please set tara weight of the productBatchKomp");
+                	  System.out.println("Please set tara weight of the ProductBatchKomp");
                 	  NumberInput3 = scan.nextFloat();
                 	  this.PBatchKompDTO.setTara(NumberInput3);
                 	  
@@ -722,22 +731,28 @@ public class TUI implements ITUI
                 	 
                       break;
                   case 5:
-                	  System.out.println("Please type in the ID of the productBatch and the ID of the commodityBatch you want to update");
+                	  System.out.println("Please type in the ID of the ProductBatch and the ID of the commodityBatch you want to update");
+                	  
+                	  System.out.print("ProductBatch ID:   ");
                 	  NumberInput = scan.nextInt();
+                	  scan.nextLine();
+                	  
+                	  System.out.print("CommodityBatch ID:   ");
                 	  NumberInput2 = scan.nextInt();
-           
+                	  
+          
                 	  this.PBatchKompDTO.setPbId(NumberInput);
                 	  this.PBatchKompDTO.setRbId(NumberInput2);
                 	  
-                	  System.out.println("Please set the new net weight of the productBatchKomp");
+                	  System.out.println("Please set the new net weight of the ProductBatchKomp");
                 	  NumberInput = scan.nextInt();
                 	  this.PBatchKompDTO.setNetto(NumberInput);
                 	  
-                	  System.out.println("Please type in the new ID of the operator");
+                	  System.out.println("Please type in the new ID of the Operator");
                 	  NumberInput = scan.nextInt();
                 	  this.PBatchKompDTO.setOprId(NumberInput);
                 	  
-                	  System.out.println("Please set the new tara weight of the productBatchKomp");
+                	  System.out.println("Please set the new tara weight of the ProductBatchKomp");
                 	  NumberInput3 = scan.nextFloat();
                 	  this.PBatchKompDTO.setTara(NumberInput3);
                 	  
@@ -772,10 +787,9 @@ public class TUI implements ITUI
  		{
  			try 
  			{
+ 				
  			this.ReceptDAO = ReceptDAO;
  			this.ReceptDTO = ReceptDTO;
- 			
- 			
  			
               System.out.println("============================");
               System.out.println("|       MENU SELECTION     |");
@@ -789,19 +803,19 @@ public class TUI implements ITUI
               System.out.println("============================");
            
               input = scan.nextInt();
-              
-              	 
+
               switch (input) 
               {
                   case 1:
                 	  
-                	  System.out.println("Please type in the id of the recept");
+                	  System.out.println("Please type in the id of the Recept");
                 	  NumberInput = scan.nextInt();
                 	  System.out.println(ReceptDAO.getRecept(NumberInput));
                 	  
                       break;
                   case 2:
                 	  
+                	  System.out.println("ReceptList full list below");
                 	  for (int i = 0; i < ReceptDAO.getReceptList().size(); i++)
                 	  {
                 		  System.out.print(ReceptDAO.getReceptList().get(i).getReceptId() + ", ");
@@ -810,11 +824,11 @@ public class TUI implements ITUI
                       break;
                   case 3:
                 	  
-                	  System.out.println("Please type in the ID of the recept");
+                	  System.out.println("Please type in the ID of the Recept");
                 	  NumberInput = scan.nextInt();
                 	  this.ReceptDTO.setReceptId(NumberInput);
                 	  
-                	  System.out.println("Please type in the name of the recept");
+                	  System.out.println("Please type in the name of the Recept");
                 	  StringInput = scan.nextLine();
                 	  this.ReceptDTO.setReceptNavn(StringInput);
                 	  
