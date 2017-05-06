@@ -3,6 +3,7 @@ package test01917;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 import connector01917.Connector;
 import daoimpl01917.MySQLUserDAO;
@@ -46,9 +47,10 @@ public class TUI implements ITUI
 	private RaavareDTO RaavareDTO;
 	private Connector C;
 
-	int input;
+	int input, conStatus=0;
 	Scanner scan = new Scanner(System.in);
 	Scanner scan2 = new Scanner(System.in);
+
 	
 	public void ConEstablishment()
 	{
@@ -76,23 +78,27 @@ public class TUI implements ITUI
 	}
 	public void Selector()
 	{
-		ConEstablishment();
-	
+		if(this.conStatus == 0)
+		{
+			this.conStatus = 1;
+			ConEstablishment();
+		}
+		
 		System.out.println("Please choose which Schema to operate in");
 		
 		
 		System.out.println("============================");
-        System.out.println("|       MENU SELECTION     	|");
+        System.out.println("|       MENU SELECTION      |");
         System.out.println("=============================");
-        System.out.println("| Options:                	|");
-        System.out.println("|      1. User				|");
-        System.out.println("|      2. ProduktBatch     	|");
-        System.out.println("|      3. ProduktBatchKomp 	|");
-        System.out.println("|      4. Recept		    |");
-        System.out.println("|      5. ReceptKomp		|");
-        System.out.println("|	   6. RaavareBatch		|");
-        System.out.println("|	   7. Raavare  		    |");
-        System.out.println("|	    			 		|");
+        System.out.println("| Options:                  |");
+        System.out.println("|      1. User              |");
+        System.out.println("|      2. ProduktBatch      |");
+        System.out.println("|      3. ProduktBatchKomp  |");
+        System.out.println("|      4. Recept            |");
+        System.out.println("|      5. ReceptKomp        |");
+        System.out.println("|	   6. RaavareBatch      |");
+        System.out.println("|	   7. Raavare           |");
+        System.out.println("|                           |");
         System.out.println("=============================");
         
          
@@ -196,7 +202,7 @@ public class TUI implements ITUI
                      listUsers();
                      break;
                  case 5:
-                     quitProgram();
+                     Selector();
                      break;
                  default:
                      System.out.println("Invalid entry");
@@ -503,7 +509,7 @@ public class TUI implements ITUI
 				System.out.println("| Roles:                   |");
 				System.out.println("|      1. Admin		       |");
 				System.out.println("|      2. Operator         |");
-				System.out.println("|      3. Foreman	       |");
+				System.out.println("|      3. Foreman          |");
 				System.out.println("|      4. Pharmacist       |");
 				System.out.println("|      5. Return           |");
 				System.out.println("============================");
@@ -562,11 +568,11 @@ public class TUI implements ITUI
               System.out.println("|       MENU SELECTION     |");
               System.out.println("============================");
               System.out.println("| Options:                 |");
-              System.out.println("| 1. Get ProduktBatch  	 |");
+              System.out.println("| 1. Get ProduktBatch      |");
               System.out.println("| 2. Get ProduktBatchList  |");
               System.out.println("| 3. Create ProduktBatch   |");
               System.out.println("| 4. Update ProduktBatch   |");
-              System.out.println("| 5. Exit         	 	 |");
+              System.out.println("| 5. Exit                  |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -624,7 +630,7 @@ public class TUI implements ITUI
                 	  
                       break;
                   case 5:
-                      quitProgram();
+                	  Selector();
                       break;
                   default:
                       System.out.println("Invalid entry");
@@ -643,6 +649,7 @@ public class TUI implements ITUI
      }
      public void ProduktBatchKompmenu(ProduktBatchKompDAO PBatchKompDAO, ProduktBatchKompDTO PBatchKompDTO)
      {
+    	 
     	 int NumberInput, NumberInput2;
     	 float NumberInput3;
     	 
@@ -656,13 +663,13 @@ public class TUI implements ITUI
               System.out.println("=========================================");
               System.out.println("|       MENU SELECTION                  |");
               System.out.println("========================================|");
-              System.out.println("| Options:                     		  |");
-              System.out.println("| 1. Get ProduktBatchKomp     		  |");
-              System.out.println("| 2. Get ProduktBatchKompList 		  |");
+              System.out.println("| Options:                              |");
+              System.out.println("| 1. Get ProduktBatchKomp               |");
+              System.out.println("| 2. Get ProduktBatchKompList           |");
               System.out.println("| 3. Get ProduktBatchKompList           |");
               System.out.println("| 4. Create ProduktBatchKomp            |");
-              System.out.println("| 5. Update ProduktBatchKomp         	  |");
-              System.out.println("| 6. Exit					        	  |");
+              System.out.println("| 5. Update ProduktBatchKomp            |");
+              System.out.println("| 6. Exit                               |");
               System.out.println("=========================================");
            
               input = scan.nextInt();
@@ -726,7 +733,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please set tara weight of the ProductBatchKomp");
                 	  NumberInput3 = scan.nextFloat();
-                	  this.PBatchKompDTO.setTara(NumberInput3);
+                	  this.PBatchKompDTO.setTara((NumberInput3/100));
                 	  
                 	  this.PBatchKompDAO.createProduktBatchKomp(this.PBatchKompDTO);
                 	 
@@ -755,14 +762,14 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please set the new tara weight of the ProductBatchKomp");
                 	  NumberInput3 = scan.nextFloat();
-                	  this.PBatchKompDTO.setTara(NumberInput3);
+                	  this.PBatchKompDTO.setTara((NumberInput3/100));
                 	  
                 	  this.PBatchKompDAO.updateProduktBatchKomp(this.PBatchKompDTO);
                 	  
                       break;
                       
                   case 6:
-                	  quitProgram();
+                	  Selector();
                 	  break;
                   default:
                       System.out.println("Invalid entry");
@@ -796,11 +803,11 @@ public class TUI implements ITUI
               System.out.println("|       MENU SELECTION     |");
               System.out.println("============================");
               System.out.println("| Options:                 |");
-              System.out.println("| 1. Get Recept		  	 |");
-              System.out.println("| 2. Get ReceptList,       |");
-              System.out.println("| 3. Create Recept  		 |");
-              System.out.println("| 4. Update Recept		 |");
-              System.out.println("| 5. Exit         	 	 |");
+              System.out.println("| 1. Get Recept            |");
+              System.out.println("| 2. Get ReceptList        |");
+              System.out.println("| 3. Create Recept         |");
+              System.out.println("| 4. Update Recept         |");
+              System.out.println("| 5. Exit                  |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -853,7 +860,7 @@ public class TUI implements ITUI
                 	  
                       break;
                   case 5:
-                      quitProgram();
+                	  Selector();
                       break;
                   default:
                       System.out.println("Invalid entry");
@@ -885,13 +892,13 @@ public class TUI implements ITUI
               System.out.println("=========================================");
               System.out.println("|       MENU SELECTION                  |");
               System.out.println("========================================|");
-              System.out.println("| Options:                     		  |");
-              System.out.println("| 1. Get specific ReceptKomp      	  |");
-              System.out.println("| 2. Get ReceptKompList List 		      |");
+              System.out.println("| Options:                              |");
+              System.out.println("| 1. Get specific ReceptKomp            |");
+              System.out.println("| 2. Get ReceptKompList List            |");
               System.out.println("| 3. Get ReceptKompList List            |");
-              System.out.println("| 4. Create ReceptKomp            	  |");
-              System.out.println("| 5. Update ReceptKomp         	      |");
-              System.out.println("| 6. Exit					        	  |");
+              System.out.println("| 4. Create ReceptKomp                  |");
+              System.out.println("| 5. Update ReceptKomp                  |");
+              System.out.println("| 6. Exit                               |");
               System.out.println("=========================================");
            
               input = scan.nextInt();
@@ -943,7 +950,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please set the weight tolerance of the ingredient");
                 	  NumberInput3 = scan.nextFloat();
-                	  this.ReceptKompDTO.setTolerance(NumberInput3);
+                	  this.ReceptKompDTO.setTolerance((NumberInput3/100));
                 	  
                 	  this.ReceptKompDAO.createReceptKomp(this.ReceptKompDTO);
                 	 
@@ -962,14 +969,14 @@ public class TUI implements ITUI
 
                 	  System.out.println("Please set the new weight tolerance of the ingredient");
                 	  NumberInput3 = scan.nextFloat();
-                	  this.ReceptKompDTO.setTolerance(NumberInput3);
+                	  this.ReceptKompDTO.setTolerance((NumberInput3/100));
                 	  
                 	  this.ReceptKompDAO.updateReceptKomp(this.ReceptKompDTO);
                 	  
                       break;
                       
                   case 6:
-                	  quitProgram();
+                	  Selector();
                 	  break;
                   default:
                       System.out.println("Invalid entry");
@@ -1001,12 +1008,12 @@ public class TUI implements ITUI
               System.out.println("|       MENU SELECTION     |");
               System.out.println("============================");
               System.out.println("| Options:                 |");
-              System.out.println("| 1. Get RaavareBatch  	 |");
+              System.out.println("| 1. Get RaavareBatch      |");
               System.out.println("| 2. Get RaavareBatchList  |");
               System.out.println("| 3. Get RaavareBatchList  |");
               System.out.println("| 4  Create RaavareBatch   |");
               System.out.println("| 5. Update RaavareBatch   |");
-              System.out.println("| 6. Exit         	 	 |");
+              System.out.println("| 6. Exit                  |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -1055,7 +1062,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the amount of the RaavareBatch");
                 	  NumberInput2 = scan.nextFloat();
-                	  this.RaavareBatchDTO.setMaengde(NumberInput2);
+                	  this.RaavareBatchDTO.setMaengde((NumberInput2/100));
                 	  
                 	  this.RaavareBatchDAO.createRaavareBatch(this.RaavareBatchDTO);
                 	
@@ -1073,13 +1080,13 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the new amount of the RaavareBatch");
                 	  NumberInput2 = scan.nextFloat();
-                	  this.RaavareBatchDTO.setMaengde(NumberInput2);
+                	  this.RaavareBatchDTO.setMaengde((NumberInput2/100));
                 	  
                 	  this.RaavareBatchDAO.updateRaavareBatch(this.RaavareBatchDTO);
                 	  
                       break;
                   case 6:
-                      quitProgram();
+                	  Selector();
                       break;
                   default:
                       System.out.println("Invalid entry");
@@ -1112,11 +1119,11 @@ public class TUI implements ITUI
               System.out.println("|       MENU SELECTION     |");
               System.out.println("============================");
               System.out.println("| Options:                 |");
-              System.out.println("| 1. Get Raavare		  	 |");
-              System.out.println("| 2. Get RaavareList,      |");
-              System.out.println("| 3. Create Raavare  		 |");
-              System.out.println("| 4. Update Raavare		 |");
-              System.out.println("| 5. Exit         	 	 |");
+              System.out.println("| 1. Get Raavare           |");
+              System.out.println("| 2. Get RaavareList       |");
+              System.out.println("| 3. Create Raavare        |");
+              System.out.println("| 4. Update Raavare        |");
+              System.out.println("| 5. Exit                  |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -1176,7 +1183,7 @@ public class TUI implements ITUI
                 	  
                       break;
                   case 5:
-                      quitProgram();
+                	  Selector();
                       break;
                   default:
                       System.out.println("Invalid entry");
