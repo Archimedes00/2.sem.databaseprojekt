@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import connector01917.Connector;
-import daoimpl01917.MySQLOperatoerDAO;
+import daoimpl01917.MySQLUsersDAO;
 import daoimpl01917.MySQLProduktBatchDAO;
 import daoimpl01917.MySQLProduktBatchKompDAO;
 import daoimpl01917.MySQLRaavareBatchDAO;
@@ -65,7 +65,7 @@ public class TUI implements ITUI
 		String username = scan.nextLine();
 		String Password = scan.nextLine();
 
-		/* havde forstillet mig at gøre det muligt at vælge hvad for en host, database, portnummer osv osv */
+		/* havde forstillet mig at gï¿½re det muligt at vï¿½lge hvad for en host, database, portnummer osv osv */
 
 		
 	}
@@ -97,7 +97,7 @@ public class TUI implements ITUI
         {
             case 1:	
             	{
-            		UsersDAO DAO = new MySQLOperatoerDAO();
+            		UsersDAO DAO = new MySQLUsersDAO();
             		UsersDTO DTO = new UsersDTO(0, null, null, null, null); //Initialising the object//
             		Usermenu(DAO, DTO);
             		break;

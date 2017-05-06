@@ -13,10 +13,10 @@ import daointerfaces01917.UsersDAO;
 import dto01917.UsersDTO;
 
 
-public class MySQLOperatoerDAO implements UsersDAO {
+public class MySQLUsersDAO implements UsersDAO {
 	
 	private Connector connector;
-	public MySQLOperatoerDAO(){
+	public MySQLUsersDAO(){
 		connector = new Connector();
 	}
 	
