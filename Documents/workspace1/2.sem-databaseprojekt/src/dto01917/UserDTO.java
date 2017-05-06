@@ -1,11 +1,5 @@
 package dto01917;
 
-/**
- * Operatoer Data Access Objekt
- * 
- * @author mn/tb
- * @version 1.2
- */
 
 public class UserDTO
 {
