@@ -45,8 +45,7 @@ public class TUI implements ITUI
 	private RaavareDAO RaavareDAO;
 	private RaavareDTO RaavareDTO;
 	private Connector C;
-	
-	
+
 	int input;
 	Scanner scan = new Scanner(System.in);
 	
@@ -66,7 +65,9 @@ public class TUI implements ITUI
 		Databasename = scan.nextLine();
 		
 		System.out.println("Please type in the username and Password");
+		System.out.print("Username:          ");
 		Username = scan.nextLine();
+		System.out.print("Password:          ");
 		Password = scan.nextLine();
 	
 		this.C = new Connector(Hostname, Portnumber, Databasename, Username, Password);
@@ -83,7 +84,7 @@ public class TUI implements ITUI
         System.out.println("|       MENU SELECTION     	|");
         System.out.println("=============================");
         System.out.println("| Options:                	|");
-        System.out.println("|      1. Operatoer			|");
+        System.out.println("|      1. User				|");
         System.out.println("|      2. ProduktBatch     	|");
         System.out.println("|      3. ProduktBatchKomp 	|");
         System.out.println("|      4. Recept		    |");
@@ -157,8 +158,6 @@ public class TUI implements ITUI
       
 	}
 
-	
-	
 	public void Usermenu(UserDAO DAO, UserDTO DTO)
 	{	
 		do 
@@ -225,7 +224,6 @@ public class TUI implements ITUI
 		
 		while (cont) 
 		{
-
 			try 
 			{
 				cont = createUserIteration(step);
@@ -240,17 +238,19 @@ public class TUI implements ITUI
 		try 
 		{
 			DAO.createUser(DTO);
-		} catch (DALException e) {
+		} catch (DALException e) 
+		{
 			System.out.println(e.getMessage());
 		}
 	}
 
      public void updateUser() throws Exception
      {
-         try {
-
+         try 
+         {
              display:
-             while (true) {
+             while (true)
+             {
 
                  System.out.println("============================");
                  System.out.println("|     UPDATE SELECTION     |");
@@ -270,7 +270,8 @@ public class TUI implements ITUI
                  boolean run = true;
                  String newRole = null;
 
-                 switch (chooseUpdate) {
+                 switch (chooseUpdate) 
+                 {
                  case 1:
                      System.out.println("============================");
                      System.out.println("|      UPDATE USER ID      |");
@@ -286,7 +287,7 @@ public class TUI implements ITUI
                      this.DTO.setOprId(newID);
                      
                      DAO.updateUser(this.DTO);
-             
+                     
                      break;
                  case 2:
                      System.out.println("============================");
@@ -394,8 +395,10 @@ public class TUI implements ITUI
      }
  }
 
-	public void listUsers() {
-		try {
+	public void listUsers() 
+	{
+		try 
+		{
 			System.out.println("============================");
 			System.out.println("|       LIST USERS         |");
 			System.out.println("============================");
@@ -404,7 +407,8 @@ public class TUI implements ITUI
 				System.out.println("User ID: " + DAO.getUserList().get(i).getOprId() + "\t User name: "
 						+ DAO.getUserList().get(i).getOprNavn());
 
-		} catch (DALException e) {
+		} catch (DALException e) 
+		{
 			System.out.println(e);
 			//e.printStackTrace();
 		}
@@ -441,7 +445,8 @@ public class TUI implements ITUI
 			DAO.deleteUser(ID); /*Skal lave en deaktivate Operator her*/
 			System.out.println("User has been deleted");
 
-		} catch (DALException e) {
+		} catch (DALException e) 
+		{
 			System.out.println(e.getMessage());
 		}
 	}
@@ -531,7 +536,8 @@ public class TUI implements ITUI
 				break;
 
 			}
-		} catch (InputMismatchException e) {
+		} catch (InputMismatchException e) 
+		{
 			scan.nextLine();
 
 		} 
@@ -550,9 +556,7 @@ public class TUI implements ITUI
  			{
  			this.PBatchDAO = PBatchDAO;
  			this.PBatchDTO = PBatchDTO;
- 			
- 			
- 			
+
               System.out.println("============================");
               System.out.println("|       MENU SELECTION     |");
               System.out.println("============================");
@@ -565,7 +569,6 @@ public class TUI implements ITUI
               System.out.println("============================");
            
               input = scan.nextInt();
-              
               	 
               switch (input) 
               {
@@ -602,7 +605,7 @@ public class TUI implements ITUI
                 	  
                       break;
                   case 4:
-                	  
+         
                 	  System.out.println("Please type in the ID of the ProductBatch you want to update");
                 	  NumberInput = scan.nextInt();
                 	  
@@ -641,14 +644,13 @@ public class TUI implements ITUI
      {
     	 int NumberInput, NumberInput2;
     	 float NumberInput3;
+    	 
     	 do 
  		{
  			try 
  			{
  			this.PBatchKompDAO = PBatchKompDAO;
  			this.PBatchKompDTO = PBatchKompDTO;
- 			
- 			
  			
               System.out.println("=========================================");
               System.out.println("|       MENU SELECTION                  |");
@@ -1171,7 +1173,6 @@ public class TUI implements ITUI
  		} while (input != 5);			
     	 
      }
-	
 }
 
     	 
