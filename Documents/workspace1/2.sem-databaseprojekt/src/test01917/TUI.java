@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import connector01917.Connector;
-import daoimpl01917.MySQLUsersDAO;
+import daoimpl01917.MySQLUserDAO;
 import daoimpl01917.MySQLProduktBatchDAO;
 import daoimpl01917.MySQLProduktBatchKompDAO;
 import daoimpl01917.MySQLRaavareBatchDAO;
@@ -19,19 +19,19 @@ import daointerfaces01917.RaavareBatchDAO;
 import daointerfaces01917.RaavareDAO;
 import daointerfaces01917.ReceptDAO;
 import daointerfaces01917.ReceptKompDAO;
-import daointerfaces01917.UsersDAO;
+import daointerfaces01917.UserDAO;
 import dto01917.ProduktBatchDTO;
 import dto01917.ProduktBatchKompDTO;
 import dto01917.RaavareBatchDTO;
 import dto01917.RaavareDTO;
 import dto01917.ReceptDTO;
 import dto01917.ReceptKompDTO;
-import dto01917.UsersDTO;
+import dto01917.UserDTO;
 
 public class TUI implements ITUI
 {
-	private UsersDAO DAO;
-	private UsersDTO DTO;
+	private UserDAO DAO;
+	private UserDTO DTO;
 	private ProduktBatchDAO PBatchDAO;
 	private ProduktBatchDTO PBatchDTO;
 	private ProduktBatchKompDAO PBatchKompDAO;
@@ -97,8 +97,8 @@ public class TUI implements ITUI
         {
             case 1:	
             	{
-            		UsersDAO DAO = new MySQLUsersDAO();
-            		UsersDTO DTO = new UsersDTO(0, null, null, null, null); //Initialising the object//
+            		UserDAO DAO = new MySQLUserDAO();
+            		UserDTO DTO = new UserDTO(0, null, null, null, null, 1); //Initialising the object//
             		Usermenu(DAO, DTO);
             		break;
                 }
@@ -236,7 +236,7 @@ public class TUI implements ITUI
 
 		try 
 		{
-			DAO.createUsers(DTO);
+			DAO.createUser(DTO);
 		} catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
@@ -282,7 +282,7 @@ public class TUI implements ITUI
                      this.DTO = DAO.getUsers(ID);
                      this.DTO.setOprId(newID);
                      
-                     DAO.updateUsers(this.DTO);
+                     DAO.updateUser(this.DTO);
              
                      break;
                  case 2:
@@ -299,7 +299,7 @@ public class TUI implements ITUI
                      this.DTO = DAO.getUsers(ID);
                      this.DTO.setOprNavn(newName);
                      
-                     DAO.updateUsers(this.DTO);
+                     DAO.updateUser(this.DTO);
                      
                      break;
                  case 3:
@@ -316,7 +316,7 @@ public class TUI implements ITUI
                      this.DTO = DAO.getUsers(ID);
                      this.DTO.setIni(newIni);
                      
-                     DAO.updateUsers(this.DTO);
+                     DAO.updateUser(this.DTO);
                   
                      break;
                  case 4:
@@ -345,7 +345,7 @@ public class TUI implements ITUI
                      
                      this.DTO = DAO.getUsers(ID);
                      this.DTO.addRole(newRole);
-                     DAO.updateUsers(this.DTO);
+                     DAO.updateUser(this.DTO);
                      break;
                 	 
                  case 5:
@@ -362,7 +362,7 @@ public class TUI implements ITUI
                      this.DTO = DAO.getUsers(ID);
                      this.DTO.setCpr(newCPR);
                      
-                     DAO.updateUsers(this.DTO);
+                     DAO.updateUser(this.DTO);
                      
                      break;
                      
@@ -375,7 +375,7 @@ public class TUI implements ITUI
                      ID = scan.nextInt();
                      
                      this.DTO = DAO.getUsers(ID);
-                     DAO.updateUsers(this.DTO);
+                     DAO.updateUser(this.DTO);
                      break;
                      
                  case 7:
