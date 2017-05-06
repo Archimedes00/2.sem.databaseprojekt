@@ -1,10 +1,10 @@
 package test01917;
 
-import daointerfaces01917.UsersDAO;
-import dto01917.UsersDTO;
+import daointerfaces01917.UserDAO;
+import dto01917.UserDTO;
 
 public interface ITUI 
 {
-	void Usermenu(UsersDAO DAO, UsersDTO DTO);
+	void Usermenu(UserDAO DAO, UserDTO DTO);
 	void Selector();
 }
