@@ -583,7 +583,7 @@ public class TUI implements ITUI
                 	  
                 	  for (int i = 0; i < PBatchDAO.getProduktBatchList().size(); i++)
                 	  {
-                		  System.out.print(PBatchDAO.getProduktBatchList().get(i).getPbId() + ", ");
+                		  System.out.println("pb_id: " + PBatchDAO.getProduktBatchList().get(i).getPbId() + "status: " + PBatchDAO.getProduktBatchList().get(i).getStatus() + "recept_id: " + PBatchDAO.getProduktBatchList().get(i).getReceptId() );
           		      }
                 	  
                       break;
