@@ -1,6 +1,6 @@
 package test01917;
 
-import daoimpl01917.MySQLOperatoerDAO;
+import daoimpl01917.MySQLUsersDAO;
 import daoimpl01917.MySQLProduktBatchDAO;
 import daoimpl01917.MySQLProduktBatchKompDAO;
 import daoimpl01917.MySQLRaavareBatchDAO;
@@ -9,7 +9,7 @@ import daoimpl01917.MySQLReceptDAO;
 import daoimpl01917.MySQLReceptKompDAO;
 
 import daointerfaces01917.DALException;
-import dto01917.OperatoerDTO;
+import dto01917.UsersDTO;
 import dto01917.ProduktBatchDTO;
 import dto01917.ProduktBatchKompDTO;
 import dto01917.RaavareBatchDTO;
@@ -24,7 +24,7 @@ public class Main {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		new Connector();
 
-		MySQLOperatoerDAO opr = new MySQLOperatoerDAO();
+		MySQLUsersDAO opr = new MySQLUsersDAO();
 		MySQLProduktBatchDAO produktbatch = new MySQLProduktBatchDAO();
 		MySQLProduktBatchKompDAO produktbatchkomp = new MySQLProduktBatchKompDAO();
 		MySQLRaavareBatchDAO raavarebatch = new MySQLRaavareBatchDAO();
@@ -38,7 +38,7 @@ public class Main {
 				catch (DALException e) { System.out.println(e.getMessage()); }
 		
 				System.out.println("Indsaettelse af ny operatoer med opr_id =  4");
-				OperatoerDTO oprDTO = new OperatoerDTO(4,"Don Juan","DJ","000000-0000","iloveyou",1);
+				UsersDTO oprDTO = new UsersDTO(4,"Don Juan","DJ","000000-0000","iloveyou",1);
 				try { opr.createOperatoer(oprDTO); }
 				catch (DALException e) { System.out.println(e.getMessage()); }	
 				
@@ -48,7 +48,7 @@ public class Main {
 				catch (DALException e) { System.out.println(e.getMessage()); }
 				
 				System.out.println("Indsaettelse af ny operatoer med opr_id =  5");
-				OperatoerDTO oprDTO2 = new OperatoerDTO(5,"Bij Kapish","BK","123456-1337","sutmig",1);
+				UsersDTO oprDTO2 = new UsersDTO(5,"Bij Kapish","BK","123456-1337","sutmig",1);
 				try { opr.createOperatoer(oprDTO2); }
 				catch (DALException e) { System.out.println(e.getMessage()); }
 		

@@ -7,7 +7,7 @@ package dto01917;
  * @version 1.2
  */
 
-public class OperatoerDTO
+public class UsersDTO
 {
 	/** Operatoer-identifikationsnummer (opr_id) i omraadet 1-99999999. Vaelges af brugerne */
 	int oprId;                     
@@ -22,7 +22,7 @@ public class OperatoerDTO
 	/** Operatoer status; 1 for aktiv, 0 for inaktiv */
 	int oprStatus;
 
-	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus)
+	public UsersDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus)
 	{
 		this.oprId = oprId;
 		this.oprNavn = oprNavn;
@@ -32,7 +32,7 @@ public class OperatoerDTO
 		this.oprStatus = oprStatus;
 	}
 	
-    public OperatoerDTO(OperatoerDTO opr)
+    public UsersDTO(UsersDTO opr)
     {
     	this.oprId = opr.getOprId();
     	this.oprNavn = opr.getOprNavn();
