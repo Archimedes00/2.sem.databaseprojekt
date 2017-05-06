@@ -60,6 +60,7 @@ public class TUI implements ITUI
 		
 		System.out.println("Please type in the port number");
 		Portnumber = scan.nextInt();
+		scan.nextLine();
 		
 		System.out.println("Please type in the name of the database");
 		Databasename = scan.nextLine();
