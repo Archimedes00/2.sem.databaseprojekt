@@ -16,8 +16,9 @@ import dto01917.RaavareDTO;
 public class MySQLRaavareDAO implements RaavareDAO {
 
 	private Connector connector;
-	public MySQLRaavareDAO(){
-		connector = new Connector();
+	public MySQLRaavareDAO(Connector C)
+	{
+		this.connector = C;
 	}
 	
 	

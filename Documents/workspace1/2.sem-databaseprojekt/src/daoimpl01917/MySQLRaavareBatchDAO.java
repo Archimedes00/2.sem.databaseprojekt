@@ -16,8 +16,10 @@ import dto01917.RaavareBatchDTO;
 public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 
 	private Connector connector;
-	public MySQLRaavareBatchDAO(){
-		connector = new Connector();	
+	
+	public MySQLRaavareBatchDAO(Connector C)
+	{
+		this.connector = C;	
 	}
 
 	public RaavareBatchDTO getRaavareBatch(int rbId) throws DALException {

@@ -72,8 +72,8 @@ public class TUI implements ITUI
 	}
 	public void Selector()
 	{
-		new Connector();
-
+		ConEstablishment();
+	
 		System.out.println("Please choose which Schema to operate in");
 		
 		
@@ -98,21 +98,21 @@ public class TUI implements ITUI
         {
             case 1:	
             	{
-            		UserDAO DAO = new MySQLUserDAO();
+            		UserDAO DAO = new MySQLUserDAO(this.C);
             		UserDTO DTO = new UserDTO(0, null, null, null, null, 1); //Initialising the object//
             		Usermenu(DAO, DTO);
             		break;
                 }
             case 2:	
             	{
-            		ProduktBatchDAO PBatchDAO = new MySQLProduktBatchDAO();
+            		ProduktBatchDAO PBatchDAO = new MySQLProduktBatchDAO(this.C);
             		ProduktBatchDTO PBatchDTO = new ProduktBatchDTO(0, 0, 0);
             		ProduktBatchmenu(PBatchDAO, PBatchDTO);
                 	break;
                 }
             case 3:
             	{
-            		ProduktBatchKompDAO PBatchKompDAO = new MySQLProduktBatchKompDAO();
+            		ProduktBatchKompDAO PBatchKompDAO = new MySQLProduktBatchKompDAO(this.C);
             		ProduktBatchKompDTO PBatchKompDTO = new ProduktBatchKompDTO(0, 0, 0, 0, 0);
             		ProduktBatchKompmenu(PBatchKompDAO, PBatchKompDTO);
             		break;
@@ -120,28 +120,28 @@ public class TUI implements ITUI
                 
             case 4:
             	{	
-            		ReceptDAO ReceptDAO = new MySQLReceptDAO();
+            		ReceptDAO ReceptDAO = new MySQLReceptDAO(this.C);
             		ReceptDTO ReceptDTO = new ReceptDTO(0, null);
             		Receptmenu(ReceptDAO, ReceptDTO);
             		break;
             	}
             case 5:
         		{
-        			ReceptKompDAO ReceptKompDAO = new MySQLReceptKompDAO();
+        			ReceptKompDAO ReceptKompDAO = new MySQLReceptKompDAO(this.C);
         			ReceptKompDTO ReceptKompDTO = new ReceptKompDTO(0, 0, 0, 0);
         			ReceptKompmenu(ReceptKompDAO, ReceptKompDTO);
         			break;
         		}
             case 6:
     			{
-    				RaavareBatchDAO RaavareBatchDAO = new MySQLRaavareBatchDAO();
+    				RaavareBatchDAO RaavareBatchDAO = new MySQLRaavareBatchDAO(this.C);
     				RaavareBatchDTO RaavareBatchDTO = new RaavareBatchDTO(0, 0, 0);
     				RaavareBatchmenu(RaavareBatchDAO, RaavareBatchDTO);
     				break;
     			}
             case 7:
 				{
-					RaavareDAO RaavareDAO = new MySQLRaavareDAO();
+					RaavareDAO RaavareDAO = new MySQLRaavareDAO(this.C);
 					RaavareDTO RaavareDTO = new RaavareDTO(0, null, null);
 					Raavaremenu(RaavareDAO, RaavareDTO);
 					break;

@@ -16,8 +16,9 @@ import daointerfaces01917.DALException;
 public class MySQLReceptKompDAO implements ReceptKompDAO {
 
 	private Connector connector;
-	public MySQLReceptKompDAO(){
-		connector = new Connector();
+	public MySQLReceptKompDAO(Connector C)
+	{
+		this.connector = C;
 	}
 	
 	@Override

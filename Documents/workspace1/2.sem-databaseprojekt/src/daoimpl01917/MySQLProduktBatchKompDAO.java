@@ -16,9 +16,10 @@ import dto01917.ProduktBatchKompDTO;
 public class MySQLProduktBatchKompDAO implements ProduktBatchKompDAO {
 
 	private Connector connector;
-	public MySQLProduktBatchKompDAO(){
-		connector = new Connector();
-		
+	
+	public MySQLProduktBatchKompDAO(Connector C)
+	{
+		this.connector = C;
 	}
 	public ProduktBatchKompDTO getProduktBatchKomp(int pbId, int rbId) throws DALException {
 		 try {

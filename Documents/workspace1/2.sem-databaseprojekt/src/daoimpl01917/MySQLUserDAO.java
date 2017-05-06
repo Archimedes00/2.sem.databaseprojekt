@@ -13,13 +13,16 @@ import daointerfaces01917.UserDAO;
 import dto01917.UserDTO;
 
 
-public class MySQLUserDAO implements UserDAO {
+public class MySQLUserDAO implements UserDAO 
+{
 	
 	private Connector connector;
-	public MySQLUserDAO(){
-		connector = new Connector();
-	}
 	
+	public MySQLUserDAO(Connector C)
+	{
+		connector = C;
+	}
+
 	public UserDTO getUser(int oprId) throws DALException {
 	    try {
 	    	ResultSet rs = connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId);

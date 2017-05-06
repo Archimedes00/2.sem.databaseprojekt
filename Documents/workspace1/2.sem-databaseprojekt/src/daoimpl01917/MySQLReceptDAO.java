@@ -16,8 +16,9 @@ import dto01917.ReceptDTO;
 public class MySQLReceptDAO implements ReceptDAO {
 	
 	private Connector connector;
-	public MySQLReceptDAO(){
-		connector = new Connector();
+	public MySQLReceptDAO(Connector C)
+	{
+		this.connector = C;
 	}
 
 	public ReceptDTO getRecept(int receptId) throws DALException {
