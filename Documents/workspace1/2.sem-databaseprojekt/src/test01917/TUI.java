@@ -50,24 +50,25 @@ public class TUI implements ITUI
 	int input;
 	Scanner scan = new Scanner(System.in);
 	
-	public void Connector()
+	public void ConEstablishment()
 	{
-		System.out.println("Please type in the name or ip address of the host");
-		String hostname = scan.nextLine();
+		String Hostname, Databasename, Username, Password;
+		int Portnumber;
 		
-		System.out.println("Please type in the port number of the host");
-		int Portnumber = scan.nextInt();
+		System.out.println("Please type in the name or ip address of the host");
+		Hostname = scan.nextLine();
+		
+		System.out.println("Please type in the port number");
+		Portnumber = scan.nextInt();
 		
 		System.out.println("Please type in the name of the database");
-		String databasename = scan.nextLine();
+		Databasename = scan.nextLine();
 		
 		System.out.println("Please type in the username and Password");
-		String username = scan.nextLine();
-		String Password = scan.nextLine();
-
-		/* havde forstillet mig at g�re det muligt at v�lge hvad for en host, database, portnummer osv osv */
-
-		
+		Username = scan.nextLine();
+		Password = scan.nextLine();
+	
+		this.C.SetupConnector(Hostname, Portnumber, Databasename, Username, Password);
 	}
 	public void Selector()
 	{

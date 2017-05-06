@@ -9,15 +9,17 @@ import java.sql.Statement;
 
 /** @author Ronnie Dalsgaard */
 public class Connector {
-    private final String HOST     = "Localhost";
-    private final int    PORT     = 3306;
-    private final String DATABASE = "Databaseprojekt";
-    private final String USERNAME = "andersand"; 
-    private final String PASSWORD = "1234";
+    private  String HOST;
+    private  int PORT;
+    private  String DATABASE;
+    private  String USERNAME;
+    private  String PASSWORD;
     private Connection connection;
     
-    public Connector() {
-        try {
+    public Connector() 
+    {
+        try 
+        {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
@@ -26,7 +28,17 @@ public class Connector {
 			System.exit(1);
 		}
     }
-
+    
+    public void SetupConnector(String HOST, int PORT, String DATABASE, String USERNAME, String PASSWORD)
+    {
+    	this.HOST = HOST;
+    	this.PORT = PORT;
+    	this.DATABASE = DATABASE;
+    	this.USERNAME = USERNAME;
+    	this.PASSWORD = PASSWORD;
+    	
+    }
+    
     public Connection getConnection(){
     	return connection;
     }
