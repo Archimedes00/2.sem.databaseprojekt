@@ -574,7 +574,7 @@ public class TUI implements ITUI
               {
                   case 1:
                 	  
-                	  System.out.println("Please type in the id of the product batch");
+                	  System.out.println("Please type in the id of the Product batch");
                 	  NumberInput = scan.nextInt();
                 	  System.out.println(PBatchDAO.getProduktBatch(NumberInput));
                 	  
@@ -583,7 +583,7 @@ public class TUI implements ITUI
                 	  
                 	  for (int i = 0; i < PBatchDAO.getProduktBatchList().size(); i++)
                 	  {
-                		  System.out.println("pb_id: " + PBatchDAO.getProduktBatchList().get(i).getPbId() + "status: " + PBatchDAO.getProduktBatchList().get(i).getStatus() + "recept_id: " + PBatchDAO.getProduktBatchList().get(i).getReceptId() );
+                		  System.out.println(" pb_id: " + PBatchDAO.getProduktBatchList().get(i).getPbId() + " status: " + PBatchDAO.getProduktBatchList().get(i).getStatus() + " recept_id: " + PBatchDAO.getProduktBatchList().get(i).getReceptId() );
           		      }
                 	  
                       break;
@@ -690,7 +690,7 @@ public class TUI implements ITUI
                 	 
                 	  for (int i = 0; i < PBatchKompDAO.getProduktBatchKompList(NumberInput).size(); i++)
                 	  {
-                		  System.out.print(PBatchKompDAO.getProduktBatchKompList(NumberInput).get(i) + ", ");
+                		  System.out.println(" pb_id: " + PBatchKompDAO.getProduktBatchKompList(NumberInput).get(i).getPbId() + " rb_id: " + PBatchKompDAO.getProduktBatchKompList(NumberInput).get(i).getRbId() + " tara: " + PBatchKompDAO.getProduktBatchKompList(NumberInput).get(i).getTara() + " netto: " + PBatchKompDAO.getProduktBatchKompList(NumberInput).get(i).getNetto() + " opr_id: " + PBatchKompDAO.getProduktBatchKompList(NumberInput).get(i).getOprId() );
           		      }
                 	  
                       break;
@@ -700,7 +700,7 @@ public class TUI implements ITUI
                 	  
                 	  for (int i = 0; i < PBatchKompDAO.getProduktBatchKompList().size(); i++)
                 	  {
-                		  System.out.print(PBatchKompDAO.getProduktBatchKompList().get(i) + ", ");
+                		  System.out.println(" pb_id: " + PBatchKompDAO.getProduktBatchKompList().get(i).getPbId() + " rb_id: " + PBatchKompDAO.getProduktBatchKompList().get(i).getRbId() + " tara: " + PBatchKompDAO.getProduktBatchKompList().get(i).getTara() + " netto: " + PBatchKompDAO.getProduktBatchKompList().get(i).getNetto() + " opr_id: " + PBatchKompDAO.getProduktBatchKompList().get(i).getOprId() );
           		      }
                 	  
                       break;
@@ -711,7 +711,7 @@ public class TUI implements ITUI
                 	  
                 	  this.PBatchKompDTO.setOprId(NumberInput);
                 	  
-                	  System.out.println("Please set net weight of the ProductBatchKomp");
+                	  System.out.println("Please set netto weight of the ProductBatchKomp");
                 	  NumberInput = scan.nextInt();
                 	  this.PBatchKompDTO.setNetto(NumberInput);
                 	
@@ -731,20 +731,20 @@ public class TUI implements ITUI
                 	 
                       break;
                   case 5:
-                	  System.out.println("Please type in the ID of the ProductBatch and the ID of the commodityBatch you want to update");
+                	  System.out.println("Please type in the ID of the ProductBatch and the ID of the RaavareBatch you want to update");
                 	  
                 	  System.out.print("ProductBatch ID:   ");
                 	  NumberInput = scan.nextInt();
                 	  scan.nextLine();
                 	  
-                	  System.out.print("CommodityBatch ID:   ");
+                	  System.out.print("RaavareBatch ID:   ");
                 	  NumberInput2 = scan.nextInt();
                 	  
           
                 	  this.PBatchKompDTO.setPbId(NumberInput);
                 	  this.PBatchKompDTO.setRbId(NumberInput2);
                 	  
-                	  System.out.println("Please set the new net weight of the ProductBatchKomp");
+                	  System.out.println("Please set the new netto weight of the ProductBatchKomp");
                 	  NumberInput = scan.nextInt();
                 	  this.PBatchKompDTO.setNetto(NumberInput);
                 	  
