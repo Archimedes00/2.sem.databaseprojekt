@@ -156,7 +156,7 @@ public class TUI implements ITUI
 
 	
 	
-	public void Usermenu(UsersDAO DAO, UsersDTO DTO)
+	public void Usermenu(UserDAO DAO, UserDTO DTO)
 	{	
 		do 
 		{
@@ -279,7 +279,7 @@ public class TUI implements ITUI
                      System.out.println("Enter new user ID: ");
                      int newID = scan.nextInt();
                      
-                     this.DTO = DAO.getUsers(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.setOprId(newID);
                      
                      DAO.updateUser(this.DTO);
@@ -296,7 +296,7 @@ public class TUI implements ITUI
                      System.out.println("Enter new user name: ");
                      String newName = scan.next();
                      
-                     this.DTO = DAO.getUsers(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.setOprNavn(newName);
                      
                      DAO.updateUser(this.DTO);
@@ -313,7 +313,7 @@ public class TUI implements ITUI
                      System.out.println("Enter new user initials: ");
                      String newIni = scan.next();
                      
-                     this.DTO = DAO.getUsers(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.setIni(newIni);
                      
                      DAO.updateUser(this.DTO);
@@ -343,7 +343,7 @@ public class TUI implements ITUI
                            }
                      }
                      
-                     this.DTO = DAO.getUsers(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.addRole(newRole);
                      DAO.updateUser(this.DTO);
                      break;
@@ -359,7 +359,7 @@ public class TUI implements ITUI
                      System.out.println("Enter new user CPR: ");
                      String newCPR = scan.next();
                      
-                     this.DTO = DAO.getUsers(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.setCpr(newCPR);
                      
                      DAO.updateUser(this.DTO);
@@ -374,7 +374,7 @@ public class TUI implements ITUI
                      System.out.println("Enter User ID: ");
                      ID = scan.nextInt();
                      
-                     this.DTO = DAO.getUsers(ID);
+                     this.DTO = DAO.getUser(ID);
                      DAO.updateUser(this.DTO);
                      break;
                      
@@ -397,9 +397,9 @@ public class TUI implements ITUI
 			System.out.println("|       LIST USERS         |");
 			System.out.println("============================");
 
-			for (int i = 0; i < DAO.getUsersList().size(); i++)
-				System.out.println("User ID: " + DAO.getUsersList().get(i).getOprId() + "\t User name: "
-						+ DAO.getUsersList().get(i).getOprNavn());
+			for (int i = 0; i < DAO.getUserList().size(); i++)
+				System.out.println("User ID: " + DAO.getUserList().get(i).getOprId() + "\t User name: "
+						+ DAO.getUserList().get(i).getOprNavn());
 
 		} catch (DALException e) {
 			System.out.println(e);
@@ -412,9 +412,9 @@ public class TUI implements ITUI
 		try 
 		{
 			System.out.print("Unavailable user IDs: {");
-			for (int i = 0; i < DAO.getUsersList().size(); i++) 
+			for (int i = 0; i < DAO.getUserList().size(); i++) 
 			{
-				System.out.print(DAO.getUsersList().get(i).getOprId() + ", ");
+				System.out.print(DAO.getUserList().get(i).getOprId() + ", ");
 			}
 			System.out.print("...}");
 			System.out.println();
