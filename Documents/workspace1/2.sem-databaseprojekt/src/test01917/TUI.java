@@ -65,9 +65,9 @@ public class TUI implements ITUI
 		Databasename = scan.nextLine();
 		
 		System.out.println("Please type in the username and Password");
-		System.out.print("Username:          ");
+		System.out.print("Username: ");
 		Username = scan.nextLine();
-		System.out.print("Password:          ");
+		System.out.print("Password: ");
 		Password = scan.nextLine();
 	
 		this.C = new Connector(Hostname, Portnumber, Databasename, Username, Password);
@@ -656,7 +656,7 @@ public class TUI implements ITUI
               System.out.println("|       MENU SELECTION                  |");
               System.out.println("========================================|");
               System.out.println("| Options:                     		  |");
-              System.out.println("| 1. Get specific ProduktBatchKomp      |");
+              System.out.println("| 1. Get ProduktBatchKomp     		  |");
               System.out.println("| 2. Get ProduktBatchKompList 		  |");
               System.out.println("| 3. Get ProduktBatchKompList           |");
               System.out.println("| 4. Create ProduktBatchKomp            |");
@@ -795,10 +795,10 @@ public class TUI implements ITUI
               System.out.println("|       MENU SELECTION     |");
               System.out.println("============================");
               System.out.println("| Options:                 |");
-              System.out.println("| 1. Get recept		  	 |");
-              System.out.println("| 2. Get receptList,       |");
-              System.out.println("| 3. Create recept  		 |");
-              System.out.println("| 4. Update recept		 |");
+              System.out.println("| 1. Get Recept		  	 |");
+              System.out.println("| 2. Get ReceptList,       |");
+              System.out.println("| 3. Create Recept  		 |");
+              System.out.println("| 4. Update Recept		 |");
               System.out.println("| 5. Exit         	 	 |");
               System.out.println("============================");
            
@@ -818,7 +818,7 @@ public class TUI implements ITUI
                 	  System.out.println("ReceptList full list below");
                 	  for (int i = 0; i < ReceptDAO.getReceptList().size(); i++)
                 	  {
-                		  System.out.print(ReceptDAO.getReceptList().get(i).getReceptId() + ", ");
+                		  System.out.println(" recept_id: " + ReceptDAO.getReceptList().get(i).getReceptId() +  " recept_navn: " + ReceptDAO.getReceptList().get(i).getReceptNavn());
           		      }
                 	  
                       break;
@@ -837,12 +837,12 @@ public class TUI implements ITUI
                       break;
                   case 4:
                 	  
-                	  System.out.println("Please type in the ID of the recept you want to update");
+                	  System.out.println("Please type in the ID of the Recept you want to update");
                 	  NumberInput = scan.nextInt();
                 	 
                 	  this.ReceptDTO.setReceptId(NumberInput);
                 	  
-                	  System.out.println("Please update the name of the recept");
+                	  System.out.println("Please update the name of the Recept");
                 	  StringInput = scan.nextLine();
 
                 	  this.ReceptDTO.setReceptNavn(StringInput);
@@ -880,17 +880,15 @@ public class TUI implements ITUI
  			this.ReceptKompDAO = ReceptKompDAO;
  			this.ReceptKompDTO = ReceptKompDTO;
  			
- 			
- 			
               System.out.println("=========================================");
               System.out.println("|       MENU SELECTION                  |");
               System.out.println("========================================|");
               System.out.println("| Options:                     		  |");
-              System.out.println("| 1. Get specific receptKomp      	  |");
+              System.out.println("| 1. Get specific ReceptKomp      	  |");
               System.out.println("| 2. Get ReceptKompList List 		      |");
               System.out.println("| 3. Get ReceptKompList List            |");
-              System.out.println("| 4. Create receptKomp            	  |");
-              System.out.println("| 5. Update receptKomp         	      |");
+              System.out.println("| 4. Create ReceptKomp            	  |");
+              System.out.println("| 5. Update ReceptKomp         	      |");
               System.out.println("| 6. Exit					        	  |");
               System.out.println("=========================================");
            
@@ -901,7 +899,7 @@ public class TUI implements ITUI
               {
                   case 1:
                 	  
-                	  System.out.println("Please type in the id of the recept and the id for the raavare");
+                	  System.out.println("Please type in the ID of the Recept and the ID for the Raavare");
                 	  NumberInput = scan.nextInt();
                 	  NumberInput2 = scan.nextInt();
                 	  System.out.println(ReceptKompDAO.getReceptKomp(NumberInput, NumberInput2));
@@ -909,36 +907,35 @@ public class TUI implements ITUI
                       break;
                   case 2:
                 	  
-                	  System.out.println("Please type in the id of the recept");
+                	  System.out.println("Please type in the ID of the Recept");
                 	  NumberInput = scan.nextInt();
                 	 
                 	  for (int i = 0; i < ReceptKompDAO.getReceptKompList(NumberInput).size(); i++)
                 	  {
-                		  System.out.print(ReceptKompDAO.getReceptKompList(NumberInput).get(i) + ", ");
+                		  System.out.println(" recept_id: " + ReceptKompDAO.getReceptKompList(NumberInput).get(i).getReceptId() +  " raavare_id: " + ReceptKompDAO.getReceptKompList(NumberInput).get(i).getRaavareId() + " nom_netto: " + ReceptKompDAO.getReceptKompList(NumberInput).get(i).getNomNetto() +  " tolerance: " + ReceptKompDAO.getReceptKompList(NumberInput).get(i).getTolerance() );
           		      }
                 	  
                       break;
                   case 3:
  
-                	 
+                	  System.out.println("ReceptKomp full list below");
                 	  for (int i = 0; i < ReceptKompDAO.getReceptKompList().size(); i++)
                 	  {
-                		  System.out.print(ReceptKompDAO.getReceptKompList().get(i) + ", ");
+                		  System.out.println(" recept_id: " + ReceptKompDAO.getReceptKompList().get(i).getReceptId() +  " raavare_id: " + ReceptKompDAO.getReceptKompList().get(i).getRaavareId() + " nom_netto: " + ReceptKompDAO.getReceptKompList().get(i).getNomNetto() +  " tolerance: " + ReceptKompDAO.getReceptKompList().get(i).getTolerance() );
           		      }
                 	  
                       break;
                   case 4:
                 	  
-                	  System.out.println("Please type in the ID of the recept");
+                	  System.out.println("Please type in the ID of the Recept");
                 	  NumberInput = scan.nextInt();
                 	  this.ReceptKompDTO.setReceptId(NumberInput);
                 	  
                 	  System.out.println("Please set the nominal weight of the ingredient");
                 	  NumberInput = scan.nextInt();
                 	  this.ReceptKompDTO.setNomNetto(NumberInput);
-                	  
                 	
-                	  System.out.println("Please type in the id of the raavare");
+                	  System.out.println("Please type in the ID of the raavare");
                 	  NumberInput = scan.nextInt();
                 	  this.ReceptKompDTO.setRaavareId(NumberInput);
                 	  
@@ -950,22 +947,21 @@ public class TUI implements ITUI
                 	 
                       break;
                   case 5:
-                	  System.out.println("Please type in the ID of the raavare and the ID of the recept you want to update");
+                	  System.out.println("Please type in the ID of the Recept and the ID of the Raavare you want to update");
                 	  NumberInput = scan.nextInt();
                 	  NumberInput2 = scan.nextInt();
                 	  
                 	  this.ReceptKompDTO.setReceptId(NumberInput);
                 	  this.ReceptKompDTO.setRaavareId(NumberInput2);
-                	  
-                	  System.out.println("Please set the new weight tolerance of the ingredient");
-                	  NumberInput3 = scan.nextFloat();
-                	  this.ReceptKompDTO.setTolerance(NumberInput3);
-                	  this.PBatchKompDTO.setNetto(NumberInput);
-                	  
+                	               	  
                 	  System.out.println("Please set the new nominal weight of the ingredient");
                 	  NumberInput = scan.nextInt();
                 	  this.ReceptKompDTO.setNomNetto(NumberInput);
-                
+
+                	  System.out.println("Please set the new weight tolerance of the ingredient");
+                	  NumberInput3 = scan.nextFloat();
+                	  this.ReceptKompDTO.setTolerance(NumberInput3);
+                	  
                 	  this.ReceptKompDAO.updateReceptKomp(this.ReceptKompDTO);
                 	  
                       break;
@@ -999,17 +995,16 @@ public class TUI implements ITUI
  			this.RaavareBatchDAO = RaavareBatchDAO;
  			this.RaavareBatchDTO = RaavareBatchDTO;
  			
- 			
- 			
               System.out.println("============================");
               System.out.println("|       MENU SELECTION     |");
               System.out.println("============================");
               System.out.println("| Options:                 |");
               System.out.println("| 1. Get RaavareBatch  	 |");
               System.out.println("| 2. Get RaavareBatchList  |");
-              System.out.println("| 3. Create RaavareBatch   |");
-              System.out.println("| 4. Update RaavareBatch   |");
-              System.out.println("| 5. Exit         	 	 |");
+              System.out.println("| 3. Get RaavareBatchList  |");
+              System.out.println("| 4  Create RaavareBatch   |");
+              System.out.println("| 5. Update RaavareBatch   |");
+              System.out.println("| 6. Exit         	 	 |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -1019,56 +1014,69 @@ public class TUI implements ITUI
               {
                   case 1:
                 	  
-                	  System.out.println("Please type in the id of the Raavare batch");
+                	  System.out.println("Please type in the ID of the RaavareBatch");
                 	  NumberInput = scan.nextInt();
                 	  System.out.println(RaavareBatchDAO.getRaavareBatch(NumberInput));
-                	
-                	  
+                
                       break;
                   case 2:
                 	  
+                	  System.out.println("Please type in the ID of the RaavareBatch");
+                	  
+                	  NumberInput = scan.nextInt();
+                	  
                 	  for (int i = 0; i < RaavareBatchDAO.getRaavareBatchList().size(); i++)
                 	  {
-                		  System.out.print(RaavareBatchDAO.getRaavareBatchList().get(i).getRaavareId() + ", ");
+                		  System.out.println(" rb_id: " + RaavareBatchDAO.getRaavareBatchList(NumberInput).get(i).getRbId() +  " raavare_id: " + RaavareBatchDAO.getRaavareBatchList(NumberInput).get(i).getRaavareId() +  " maengde: " + RaavareBatchDAO.getRaavareBatchList(NumberInput).get(i).getMaengde());
+                		  
           		      }
                 	  
                       break;
                   case 3:
                 	  
+                	  System.out.println("RaavareBatch full list below");
+                	  for (int i = 0; i < RaavareBatchDAO.getRaavareBatchList().size(); i++)
+                	  {
+                		  System.out.println(" rb_id: " + RaavareBatchDAO.getRaavareBatchList().get(i).getRbId() +  " raavare_id: " + RaavareBatchDAO.getRaavareBatchList().get(i).getRbId() +  " maengde: " + RaavareBatchDAO.getRaavareBatchList().get(i).getMaengde());
+          		      }
+                	  
+                      break;
+                  case 4:
+                	  
                 	  System.out.println("Please type in the ID of the RaavareBatch");
                 	  NumberInput = scan.nextInt();
                 	  this.RaavareBatchDTO.setRaavareId(NumberInput);
                 	  
-                	  System.out.println("Please type in the ID of the raavareBatch");
+                	  System.out.println("Please type in the ID of the RaavareBatch");
                 	  NumberInput = scan.nextInt();
                 	  this.RaavareBatchDTO.setRbId(NumberInput);
                 	  
-                	  System.out.println("Please type in the amount of the raavareBatch");
+                	  System.out.println("Please type in the amount of the RaavareBatch");
                 	  NumberInput2 = scan.nextFloat();
                 	  this.RaavareBatchDTO.setMaengde(NumberInput2);
                 	  
                 	  this.RaavareBatchDAO.createRaavareBatch(this.RaavareBatchDTO);
                 	
                       break;
-                  case 4:
+                  case 5:
                 	  
-                	  System.out.println("Please type in the ID of the raavareBatch you want to update");
+                	  System.out.println("Please type in the ID of the RaavareBatch you want to update");
                 	  NumberInput = scan.nextInt();
                 	  
                 	  this.RaavareBatchDTO.setRbId(NumberInput);
                 	  
-                	  System.out.println("Please type in the new raavare ID of the ProductBatch");
+                	  System.out.println("Please type in the new Raavare ID of the RaavareBatch");
                 	  NumberInput = scan.nextInt();
                 	  this.RaavareBatchDTO.setRaavareId(NumberInput);
                 	  
-                	  System.out.println("Please type in the new amount of the raavareBatch");
+                	  System.out.println("Please type in the new amount of the RaavareBatch");
                 	  NumberInput2 = scan.nextFloat();
                 	  this.RaavareBatchDTO.setMaengde(NumberInput2);
                 	  
                 	  this.RaavareBatchDAO.updateRaavareBatch(this.RaavareBatchDTO);
                 	  
                       break;
-                  case 5:
+                  case 6:
                       quitProgram();
                       break;
                   default:
@@ -1083,7 +1091,7 @@ public class TUI implements ITUI
  			
  			scan.nextLine();
  			
- 		} while (input != 5);			
+ 		} while (input != 6);			
     	 
      }
      public void Raavaremenu(RaavareDAO RaavareDAO, RaavareDTO RaavareDTO)
@@ -1098,46 +1106,44 @@ public class TUI implements ITUI
  			this.RaavareDAO = RaavareDAO;
  			this.RaavareDTO = RaavareDTO;
  			
- 			
- 			
               System.out.println("============================");
               System.out.println("|       MENU SELECTION     |");
               System.out.println("============================");
               System.out.println("| Options:                 |");
-              System.out.println("| 1. Get raavare		  	 |");
-              System.out.println("| 2. Get raavareList,      |");
-              System.out.println("| 3. Create raavare  		 |");
-              System.out.println("| 4. Update raavare		 |");
+              System.out.println("| 1. Get Raavare		  	 |");
+              System.out.println("| 2. Get RaavareList,      |");
+              System.out.println("| 3. Create Raavare  		 |");
+              System.out.println("| 4. Update Raavare		 |");
               System.out.println("| 5. Exit         	 	 |");
               System.out.println("============================");
            
               input = scan.nextInt();
               
-              	 
               switch (input) 
               {
                   case 1:
                 	  
-                	  System.out.println("Please type in the id of the raaver");
+                	  System.out.println("Please type in the ID of the Raavare");
                 	  NumberInput = scan.nextInt();
                 	  System.out.println(RaavareDAO.getRaavare(NumberInput));
-                	  
+                	
                       break;
                   case 2:
                 	  
                 	  for (int i = 0; i < RaavareDAO.getRaavareList().size(); i++)
                 	  {
+                		  System.out.println(" raavare_id: " + RaavareDAO.getRaavareList().get(i).getRaavareId() +  " raavare_navn: " + RaavareDAO.getRaavareList().get(i).getRaavareNavn() +  " leverandoer: " + RaavareDAO.getRaavareList().get(i).getLeverandoer());
                 		  System.out.print(RaavareDAO.getRaavareList().get(i).getRaavareId() + ", ");
           		      }
                 	  
                       break;
                   case 3:
                 	  
-                	  System.out.println("Please type in the ID of the raavare");
+                	  System.out.println("Please type in the ID of the Raavare");
                 	  NumberInput = scan.nextInt();
                 	  this.RaavareDTO.setRaavareId(NumberInput);
                 	  
-                	  System.out.println("Please type in the name of the raavare");
+                	  System.out.println("Please type in the name of the Raavare");
                 	  StringInput = scan.nextLine();
                 	  this.RaavareDTO.setRaavareNavn(StringInput);
                 	  
@@ -1145,18 +1151,17 @@ public class TUI implements ITUI
                 	  StringInput = scan.nextLine();
                 	  this.RaavareDTO.setLeverandoer(StringInput);
                 	  
-                	  
                 	  this.RaavareDAO.createRaavare(this.RaavareDTO);
                 	  
                       break;
                   case 4:
                 	  
-                	  System.out.println("Please type in the ID of the raavare you want to update");
+                	  System.out.println("Please type in the ID of the Raavare you want to update");
                 	  NumberInput = scan.nextInt();
                 	  
                 	  this.RaavareDTO.setRaavareId(NumberInput);
                 	  
-                	  System.out.println("Please update the name of the raavare");
+                	  System.out.println("Please update the name of the Raavare");
                 	  StringInput = scan.nextLine();
                 	  
                 	  this.RaavareDTO.setRaavareNavn(StringInput);
