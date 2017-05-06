@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/** @author Ronnie Dalsgaard */
+/** @author Ronie Dalsgaard */
 public class Connector {
     private  String HOST;
     private  int PORT;
