@@ -48,6 +48,7 @@ public class TUI implements ITUI
 
 	int input;
 	Scanner scan = new Scanner(System.in);
+	Scanner scan2 = new Scanner(System.in);
 	
 	public void ConEstablishment()
 	{
@@ -829,7 +830,7 @@ public class TUI implements ITUI
                 	  this.ReceptDTO.setReceptId(NumberInput);
                 	  
                 	  System.out.println("Please type in the name of the Recept");
-                	  StringInput = scan.nextLine();
+                	  StringInput = scan2.nextLine();
                 	  this.ReceptDTO.setReceptNavn(StringInput);
                 	  
                 	  this.ReceptDAO.createRecept(this.ReceptDTO);
@@ -843,7 +844,7 @@ public class TUI implements ITUI
                 	  this.ReceptDTO.setReceptId(NumberInput);
                 	  
                 	  System.out.println("Please update the name of the Recept");
-                	  StringInput = scan.nextLine();
+                	  StringInput = scan2.nextLine();
 
                 	  this.ReceptDTO.setReceptNavn(StringInput);
                 	  
@@ -1021,7 +1022,7 @@ public class TUI implements ITUI
                       break;
                   case 2:
                 	  
-                	  System.out.println("Please type in the ID of the RaavareBatch");
+                	  System.out.println("Please type in the ID of the Raavare");
                 	  
                 	  NumberInput = scan.nextInt();
                 	  
@@ -1045,11 +1046,11 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the ID of the RaavareBatch");
                 	  NumberInput = scan.nextInt();
-                	  this.RaavareBatchDTO.setRaavareId(NumberInput);
-                	  
-                	  System.out.println("Please type in the ID of the RaavareBatch");
-                	  NumberInput = scan.nextInt();
                 	  this.RaavareBatchDTO.setRbId(NumberInput);
+                	  
+                	  System.out.println("Please type in the ID of the Raavare");
+                	  NumberInput = scan.nextInt();
+                	  this.RaavareBatchDTO.setRaavareId(NumberInput);
                 	  
                 	  System.out.println("Please type in the amount of the RaavareBatch");
                 	  NumberInput2 = scan.nextFloat();
@@ -1133,7 +1134,6 @@ public class TUI implements ITUI
                 	  for (int i = 0; i < RaavareDAO.getRaavareList().size(); i++)
                 	  {
                 		  System.out.println(" raavare_id: " + RaavareDAO.getRaavareList().get(i).getRaavareId() +  " raavare_navn: " + RaavareDAO.getRaavareList().get(i).getRaavareNavn() +  " leverandoer: " + RaavareDAO.getRaavareList().get(i).getLeverandoer());
-                		  System.out.print(RaavareDAO.getRaavareList().get(i).getRaavareId() + ", ");
           		      }
                 	  
                       break;
@@ -1144,11 +1144,11 @@ public class TUI implements ITUI
                 	  this.RaavareDTO.setRaavareId(NumberInput);
                 	  
                 	  System.out.println("Please type in the name of the Raavare");
-                	  StringInput = scan.nextLine();
+                	  StringInput = scan2.nextLine();
                 	  this.RaavareDTO.setRaavareNavn(StringInput);
                 	  
                 	  System.out.println("Please type in the name of the supplier");
-                	  StringInput = scan.nextLine();
+                	  StringInput = scan2.nextLine();
                 	  this.RaavareDTO.setLeverandoer(StringInput);
                 	  
                 	  this.RaavareDAO.createRaavare(this.RaavareDTO);
@@ -1162,12 +1162,12 @@ public class TUI implements ITUI
                 	  this.RaavareDTO.setRaavareId(NumberInput);
                 	  
                 	  System.out.println("Please update the name of the Raavare");
-                	  StringInput = scan.nextLine();
+                	  StringInput = scan2.nextLine();
                 	  
                 	  this.RaavareDTO.setRaavareNavn(StringInput);
                 	  
                 	  System.out.println("Please update the name of the supplier");
-                	  StringInput = scan.nextLine();
+                	  StringInput = scan2.nextLine();
                 	  
                 	  this.RaavareDTO.setLeverandoer(StringInput);
                 	  

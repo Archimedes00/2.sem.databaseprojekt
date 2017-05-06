@@ -56,7 +56,7 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 			ResultSet rs = connector.doQuery("SELECT * FROM raavarebatch where raavare_id = " + raavareId);
 			while (rs.next()) 
 			{
-				list.add(new RaavareBatchDTO(rs.getInt("opr_id"), rs.getInt("opr_navn"), rs.getInt("ini")));
+				list.add(new RaavareBatchDTO(rs.getInt("rb_id"), rs.getInt("raavare_id"), rs.getInt("maengde")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }
