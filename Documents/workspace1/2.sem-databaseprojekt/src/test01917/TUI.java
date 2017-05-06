@@ -826,6 +826,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the ID of the Recept");
                 	  NumberInput = scan.nextInt();
+                	  StringInput = scan.nextLine();
                 	  this.ReceptDTO.setReceptId(NumberInput);
                 	  
                 	  System.out.println("Please type in the name of the Recept");
@@ -1193,10 +1194,3 @@ public class TUI implements ITUI
     	 
      }
 }
-
-    	 
-
-
-
-
-
