@@ -118,67 +118,28 @@ public class JUnitDBTest {
 		System.out.println("\nTryk på en knap for at gendanne testen.");
 		scan.nextLine();
 		try {
-		
-		//CALL resetTest kører proceduren resetTest i databasen.
+		//CALL resetTest kører den gemete procedure resetTest i databasen
 		connector.doUpdate("CALL resetTest");
-		System.out.println("Test-data gendannet.");
-		
-		//Proceduren erstatter alt udkommenteret kode nedenunder.
-		
-//		connector.doUpdate("DELETE FROM produktbatchkomponent WHERE pb_id = 6 AND rb_id = 8;");
-//		System.out.println("Produktbachkomponent slettet.");
-//		connector.doUpdate("DELETE FROM operatoer WHERE opr_id = 8;");
-//		System.out.println("Operator slettet.");
-//		connector.doUpdate("DELETE FROM raavarebatch WHERE rb_id = 8;");
-//		System.out.println("Raavarebatch slettet.");
-//		connector.doUpdate("DELETE FROM raavare WHERE raavare_id = 8;");
-//		System.out.println("Raavare slettet.");
-//		connector.doUpdate("DELETE FROM produktbatch WHERE pb_id = 6;");
-//		System.out.println("Produktbatch slettet.");
-//		connector.doUpdate("DELETE FROM receptkomponent WHERE recept_id = 4;");
-//		System.out.println("Receptkomponent slettet.");
-//		connector.doUpdate("DELETE FROM recept WHERE recept_id = 4;");
-//		System.out.println("Recept slettet.");
 		}
-		
 		catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		
 	}
 	
-	
-	
-	
-	
-
-	
-	
-//	
-//	public void test () {
-//		Assert.assertNotNull(this.player1);
-//		Assert.assertNotNull(this.player2);
-//	
-//		Assert.assertNotNull(pay1000);
-//		Assert.assertNotNull(get1000);
-//		Assert.assertNotNull(get500FromPlayer2);
-//		
-//		Assert.assertTrue(this.pay1000 instanceof PlayerPayMoney);
-//		Assert.assertTrue(this.get1000 instanceof PlayerGetMoney);
-//		Assert.assertTrue(this.get500FromPlayer2 instanceof GetMoneyFromPlayers);
-//	}
-//	
-//	public void testDrawCardPay1000() {
-//		int expected = 30000; 
-//		int actual = this.player1.getPoints();
-//		Assert.assertEquals(expected, actual);
-//		
-//		this.pay1000.DrawCard(player1);
-//		expected = 29000;
-//		actual = this.player1.getPoints();
-//		Assert.assertEquals(expected, actual);		
-//	}
-//	
-//	
+	//Proceduren erstatter alt udkommenteret kode nedenunder.
+//	connector.doUpdate("DELETE FROM produktbatchkomponent WHERE pb_id = 6 AND rb_id = 8;");
+//	System.out.println("Produktbachkomponent slettet.");
+//	connector.doUpdate("DELETE FROM operatoer WHERE opr_id = 8;");
+//	System.out.println("Operator slettet.");
+//	connector.doUpdate("DELETE FROM raavarebatch WHERE rb_id = 8;");
+//	System.out.println("Raavarebatch slettet.");
+//	connector.doUpdate("DELETE FROM raavare WHERE raavare_id = 8;");
+//	System.out.println("Raavare slettet.");
+//	connector.doUpdate("DELETE FROM produktbatch WHERE pb_id = 6;");
+//	System.out.println("Produktbatch slettet.");
+//	connector.doUpdate("DELETE FROM receptkomponent WHERE recept_id = 4;");
+//	System.out.println("Receptkomponent slettet.");
+//	connector.doUpdate("DELETE FROM recept WHERE recept_id = 4;");
+//	System.out.println("Recept slettet.");
 
 }
