@@ -12,7 +12,7 @@ import daointerfaces01917.DALException;
 import daointerfaces01917.ProduktBatchDAO;
 import dto01917.ProduktBatchDTO;
 
-
+/** Author Bijan Negari */
 public class MySQLProduktBatchDAO implements ProduktBatchDAO {
 
 	private Connector connector;

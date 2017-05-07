@@ -1,11 +1,9 @@
 package dto01917;
 
-
+/** Author Bijan Negari */
 public class RolleDTO
 {
-	/** Operatoer-identifikationsnummer (opr_id) i omraadet 1-99999999.*/
 	int oprId;                     
-	/** Rolle. Enum, en af 4 roller: Admin, Foreman, Pharmacist, Operator*/
 	String rolle;                
 	
 	public RolleDTO(int oprId, String rolle)
