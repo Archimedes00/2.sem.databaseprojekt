@@ -1,5 +1,5 @@
 package test01917;
-
+/** @author Stuart McLean */
 import java.sql.SQLException;
 
 public class Main 

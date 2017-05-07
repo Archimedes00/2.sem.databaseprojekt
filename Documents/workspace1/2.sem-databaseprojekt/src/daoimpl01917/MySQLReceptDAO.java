@@ -53,7 +53,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 					"Call " +
 					"(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "')";
 
-			PreparedStatement pstmt = this.connector.getConnection().prepareCall("{call CreateNewRecepts(?,?,?)}");
+			PreparedStatement pstmt = this.connector.getConnection().prepareCall("{call CreateNewRecepts(?,?)}");
 			
 			pstmt.setInt(1, recept.getReceptId());
 			pstmt.setString(2, recept.getReceptNavn());

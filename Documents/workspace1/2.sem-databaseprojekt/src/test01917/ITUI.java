@@ -1,5 +1,5 @@
 package test01917;
-
+/** @author Stuart McLean */
 import daointerfaces01917.OperatoerDAO;
 import dto01917.OperatoerDTO;
 

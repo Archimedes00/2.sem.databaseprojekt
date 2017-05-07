@@ -26,6 +26,8 @@ import dto01917.ReceptDTO;
 import dto01917.ReceptKompDTO;
 import dto01917.OperatoerDTO;
 
+/** @author Stuart McLean */
+
 public class TUI implements ITUI
 {
 	private OperatoerDAO DAO;
