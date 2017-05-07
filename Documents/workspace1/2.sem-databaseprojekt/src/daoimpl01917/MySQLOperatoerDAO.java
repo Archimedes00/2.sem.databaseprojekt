@@ -46,6 +46,17 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 			} catch(SQLException e){
 				e.printStackTrace();
 			}
+			try {
+				connector.doUpdate(
+						"INSERT INTO rolle(opr_id, rolle) VALUES " +
+								"(" + opr.getOprId() + ", '" + opr.getRolle() + "')"
+						);
+			} catch ( SQLIntegrityConstraintViolationException e) {
+				e.printStackTrace();
+				throw new DALException("Duplicate entry");
+			} catch(SQLException e){
+				e.printStackTrace();
+			}
 	}
 	
 	public void updateOperatoer(OperatoerDTO opr) throws DALException {
