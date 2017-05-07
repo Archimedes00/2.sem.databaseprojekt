@@ -1,5 +1,6 @@
 package daoimpl01917;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -46,11 +47,24 @@ public class MySQLReceptDAO implements ReceptDAO {
 
 	@Override
 	public void createRecept(ReceptDTO recept) throws DALException {
-		try {
-			connector.doUpdate(
+		try 
+		{
+			String query =
+					"INSERT INTO recept (recept_id, recept_navn) VALUES " +
+					"(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "')";
+
+			PreparedStatement pstmt = this.connector.getConnection().prepareStatement(query);
+			
+			pstmt.executeQuery();
+	
+			/*
+			connector.doUpdate
+			(
 				"INSERT INTO recept (recept_id, recept_navn) VALUES " +
 				"(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "')"
 			);
+			*/
+			
 		} catch ( SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 			throw new DALException("Duplicate entry");
