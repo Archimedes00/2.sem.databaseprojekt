@@ -7,8 +7,8 @@ import dto01917.OperatoerDTO;
 /*Dette interface g�lder for alle Roller*/
 
 public interface OperatoerDAO {
-	OperatoerDTO getUser(int oprId) throws DALException;
-	List<OperatoerDTO> getUserList() throws DALException;
-	void createUser(OperatoerDTO opr) throws DALException;
-	void updateUser(OperatoerDTO opr) throws DALException;
+	OperatoerDTO getOperatoer(int oprId) throws DALException;
+	List<OperatoerDTO> getOperatoerList() throws DALException;
+	void createOperatoer(OperatoerDTO opr) throws DALException;
+	void updateOperatoer(OperatoerDTO opr) throws DALException;
 }

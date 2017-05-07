@@ -23,7 +23,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 		connector = C;
 	}
 
-	public OperatoerDTO getUser(int oprId) throws DALException {
+	public OperatoerDTO getOperatoer(int oprId) throws DALException {
 	    try {
 	    	ResultSet rs = connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId);
 	    	if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke");
@@ -33,7 +33,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 		
 	}
 	
-	public void createUser(OperatoerDTO opr) throws DALException {		
+	public void createOperatoer(OperatoerDTO opr) throws DALException {		
 			try {
 				connector.doUpdate(
 					"INSERT INTO operatoer(opr_id, opr_navn, ini, cpr, password, opr_status) VALUES " +
@@ -48,7 +48,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 			}
 	}
 	
-	public void updateUser(OperatoerDTO opr) throws DALException {
+	public void updateOperatoer(OperatoerDTO opr) throws DALException {
 		try {
 			connector.doUpdate(
 					"UPDATE operatoer SET  opr_navn = '" + opr.getOprNavn() + "', ini =  '" + opr.getIni() + 
@@ -61,7 +61,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 		}
 	}
 	
-	public List<OperatoerDTO> getUserList() throws DALException {
+	public List<OperatoerDTO> getOperatoerList() throws DALException {
 		List<OperatoerDTO> list = new ArrayList<OperatoerDTO>();
 		try
 		{
@@ -75,7 +75,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 		return list;
 	}
 		
-	public void deactivateUser(OperatoerDTO opr) throws DALException {
+	public void deactivateOperatoer(OperatoerDTO opr) throws DALException {
 		try {
 			connector.doUpdate(
 					"UPDATE operatoer SET  opr_navn = '" + opr.getOprNavn() + "', ini =  '" + opr.getIni() + 

@@ -5,6 +5,6 @@ import dto01917.OperatoerDTO;
 
 public interface ITUI 
 {
-	void Usermenu(OperatoerDAO DAO, OperatoerDTO DTO);
+	void Operatoermenu(OperatoerDAO DAO, OperatoerDTO DTO);
 	void Selector();
 }
