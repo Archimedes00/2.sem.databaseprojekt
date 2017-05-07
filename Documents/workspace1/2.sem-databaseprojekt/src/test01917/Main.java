@@ -9,21 +9,21 @@ public class Main
 //		ITUI userInterface = new TUI();
 //		userInterface.Selector();
 		
-//		JUnitDBTest test = new JUnitDBTest();
-//		try {
-//		test.startTest();
-//		test.resetTestResults();
-//		}
-//		catch(Exception ex) {
-//			ex.printStackTrace();
-//		}
+		JUnitDBTest test = new JUnitDBTest();
+		try {
+		AllTests tests = new AllTests();
+		test.resetTestResults();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		
-		JUnitDBTest JUnit = new JUnitDBTest();
-		OperatorTest ot = new OperatorTest();
-		ot.test(JUnit);
-		
-		RaavareTest rt = new RaavareTest();
-		rt.test(JUnit);
+//		JUnitDBTest JUnit = new JUnitDBTest();
+//		OperatorTest ot = new OperatorTest();
+//		ot.test(JUnit);
+//		
+//		RaavareTest rt = new RaavareTest();
+//		rt.test(JUnit);
 		
 	}
 }

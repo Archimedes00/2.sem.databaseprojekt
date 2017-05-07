@@ -129,7 +129,10 @@ public class JUnitDBTest {
 		System.out.println("Raavare slettet.");
 		connector.doUpdate("DELETE FROM produktbatch WHERE pb_id = 6;");
 		System.out.println("Produktbatch slettet.");
-		
+		connector.doUpdate("DELETE FROM receptkomponent WHERE recept_id = 4;");
+		System.out.println("Receptkomponent slettet.");
+		connector.doUpdate("DELETE FROM recept WHERE recept_id = 4;");
+		System.out.println("Recept slettet.");
 		}
 		catch (SQLException ex) {
 			ex.printStackTrace();
