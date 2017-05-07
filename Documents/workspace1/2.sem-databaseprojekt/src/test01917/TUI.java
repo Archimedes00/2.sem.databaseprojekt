@@ -594,7 +594,7 @@ public class TUI implements ITUI
 
 					System.out.println("Please type in the id of the Product batch");
 					NumberInput = scan.nextInt();
-					System.out.println(PBatchDAO.getProduktBatch(NumberInput));
+					System.out.println(" pb_id: " + PBatchDAO.getProduktBatch(NumberInput));
 
 					break;
 				case 2:
@@ -699,7 +699,7 @@ public class TUI implements ITUI
 					System.out.print("RaavareBatch ID:   ");
 					NumberInput2 = scan.nextInt();
 
-					System.out.println(PBatchKompDAO.getProduktBatchKomp(NumberInput, NumberInput2));
+					System.out.println(" pb_id: " + PBatchKompDAO.getProduktBatchKomp(NumberInput, NumberInput2));
 
 					break;
 				case 2:
@@ -829,7 +829,7 @@ public class TUI implements ITUI
 
 					System.out.println("Please type in the id of the Recept");
 					NumberInput = scan.nextInt();
-					System.out.println(ReceptDAO.getRecept(NumberInput));
+					System.out.println(" recept_id: " + ReceptDAO.getRecept(NumberInput));
 
 					break;
 				case 2:
@@ -922,7 +922,7 @@ public class TUI implements ITUI
 					System.out.println("Please type in the ID of the Recept and the ID for the Raavare");
 					NumberInput = scan.nextInt();
 					NumberInput2 = scan.nextInt();
-					System.out.println(ReceptKompDAO.getReceptKomp(NumberInput, NumberInput2));
+					System.out.println(" recept_id: " + ReceptKompDAO.getReceptKomp(NumberInput, NumberInput2));
 
 					break;
 				case 2:
@@ -1036,7 +1036,7 @@ public class TUI implements ITUI
 
 					System.out.println("Please type in the ID of the RaavareBatch");
 					NumberInput = scan.nextInt();
-					System.out.println(RaavareBatchDAO.getRaavareBatch(NumberInput));
+					System.out.println(" rb_id: " + RaavareBatchDAO.getRaavareBatch(NumberInput));
 
 					break;
 				case 2:
@@ -1145,7 +1145,7 @@ public class TUI implements ITUI
 
 					System.out.println("Please type in the ID of the Raavare");
 					NumberInput = scan.nextInt();
-					System.out.println(RaavareDAO.getRaavare(NumberInput));
+					System.out.println(" raavare_id: " + RaavareDAO.getRaavare(NumberInput));
 
 					break;
 				case 2:
