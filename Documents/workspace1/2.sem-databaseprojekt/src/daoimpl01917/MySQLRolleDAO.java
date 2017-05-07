@@ -10,7 +10,7 @@ import connector01917.Connector;
 import daointerfaces01917.DALException;
 import daointerfaces01917.RolleDAO;
 import dto01917.RolleDTO;
-import dto01917.OperatoerDTO;
+import dto01917.UserDTO;
 
 public class MySQLRolleDAO implements RolleDAO{
 

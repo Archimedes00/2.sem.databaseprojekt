@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import connector01917.Connector;
 import daointerfaces01917.ReceptKompDAO;
-import dto01917.OperatoerDTO;
+import dto01917.UserDTO;
 import dto01917.ProduktBatchKompDTO;
 import dto01917.ReceptKompDTO;
 import daointerfaces01917.DALException;

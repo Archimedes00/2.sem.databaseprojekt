@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.text.DecimalFormat;
 
 import connector01917.Connector;
-import daoimpl01917.MySQLOperatoerDAO;
+import daoimpl01917.MySQLUserDAO;
 import daoimpl01917.MySQLProduktBatchDAO;
 import daoimpl01917.MySQLProduktBatchKompDAO;
 import daoimpl01917.MySQLRaavareBatchDAO;
@@ -20,19 +20,19 @@ import daointerfaces01917.RaavareBatchDAO;
 import daointerfaces01917.RaavareDAO;
 import daointerfaces01917.ReceptDAO;
 import daointerfaces01917.ReceptKompDAO;
-import daointerfaces01917.OperatoerDAO;
+import daointerfaces01917.UserDAO;
 import dto01917.ProduktBatchDTO;
 import dto01917.ProduktBatchKompDTO;
 import dto01917.RaavareBatchDTO;
 import dto01917.RaavareDTO;
 import dto01917.ReceptDTO;
 import dto01917.ReceptKompDTO;
-import dto01917.OperatoerDTO;
+import dto01917.UserDTO;
 
 public class TUI implements ITUI
 {
-	private OperatoerDAO DAO;
-	private OperatoerDTO DTO;
+	private UserDAO DAO;
+	private UserDTO DTO;
 	private ProduktBatchDAO PBatchDAO;
 	private ProduktBatchDTO PBatchDTO;
 	private ProduktBatchKompDAO PBatchKompDAO;
@@ -54,7 +54,7 @@ public class TUI implements ITUI
 	
 	public void ConEstablishment()
 	{
-		String Hostname, Databasename, Operatoername, Password;
+		String Hostname, Databasename, Username, Password;
 		int Portnumber;
 		
 		System.out.println("Please type in the name or ip address of the host");
@@ -67,13 +67,13 @@ public class TUI implements ITUI
 		System.out.println("Please type in the name of the database");
 		Databasename = scan.nextLine();
 		
-		System.out.println("Please type in the Operatoername and Password");
-		System.out.print("Operatoername: ");
-		Operatoername = scan.nextLine();
+		System.out.println("Please type in the username and Password");
+		System.out.print("Username: ");
+		Username = scan.nextLine();
 		System.out.print("Password: ");
 		Password = scan.nextLine();
 	
-		this.C = new Connector(Hostname, Portnumber, Databasename, Operatoername, Password);
+		this.C = new Connector(Hostname, Portnumber, Databasename, Username, Password);
 
 	}
 	public void Selector()
@@ -91,7 +91,7 @@ public class TUI implements ITUI
         System.out.println("|       MENU SELECTION      |");
         System.out.println("=============================");
         System.out.println("| Options:                  |");
-        System.out.println("|      1. Operatoer         |");
+        System.out.println("|      1. User              |");
         System.out.println("|      2. ProduktBatch      |");
         System.out.println("|      3. ProduktBatchKomp  |");
         System.out.println("|      4. Recept            |");
@@ -108,9 +108,9 @@ public class TUI implements ITUI
         {
             case 1:	
             	{
-            		OperatoerDAO DAO = new MySQLOperatoerDAO(this.C);
-            		OperatoerDTO DTO = new OperatoerDTO(0, null, null, null, null, 1); //Initialising the object//
-            		Operatoermenu(DAO, DTO);
+            		UserDAO DAO = new MySQLUserDAO(this.C);
+            		UserDTO DTO = new UserDTO(0, null, null, null, null, 1); //Initialising the object//
+            		Usermenu(DAO, DTO);
             		break;
                 }
             case 2:	
@@ -165,7 +165,7 @@ public class TUI implements ITUI
       
 	}
 
-	public void Operatoermenu(OperatoerDAO DAO, OperatoerDTO DTO)
+	public void Usermenu(UserDAO DAO, UserDTO DTO)
 	{	
 		do 
 		{
@@ -175,14 +175,14 @@ public class TUI implements ITUI
 			this.DTO = DTO;
 			
              System.out.println("============================");
-             System.out.println("|       MENU SELECTION      |");
+             System.out.println("|       MENU SELECTION     |");
              System.out.println("============================");
-             System.out.println("|Options:                   |");
-             System.out.println("|       1. Create Operatoer |");
-             System.out.println("|       2. Update Operatoer |");
-             System.out.println("|       3. Delete Operatoer |");
-             System.out.println("|       4. List Operatoer   |");
-             System.out.println("|       5. Return           |");
+             System.out.println("| Options:                 |");
+             System.out.println("|        1. Create User    |");
+             System.out.println("|        2. Update User    |");
+             System.out.println("|        3. Delete User    |");
+             System.out.println("|        4. List Users     |");
+             System.out.println("|        5. Exit           |");
              System.out.println("============================");
             
              input = scan.nextInt();
@@ -190,16 +190,16 @@ public class TUI implements ITUI
              switch (input) 
              {
                  case 1:
-					 createOperatoer();
+					 createUser();
                      break;
                  case 2:
-                     updateOperatoer();
+                     updateUser();
                      break;
                  case 3:
-                     deleteOperatoer();
+                     deleteUser();
                      break;
                  case 4:
-                     listOperatoer();
+                     listUsers();
                      break;
                  case 5:
                      Selector();
@@ -219,21 +219,21 @@ public class TUI implements ITUI
 		} while (input != 5);			
 	}
 	
-	public void createOperatoer() 
+	public void createUser() 
 	{
 
 		int step = 1;
 		boolean cont = true;
 
 		System.out.println("============================");
-		System.out.println("|        CREATE Operatoer  |");
+		System.out.println("|        CREATE USER       |");
 		System.out.println("============================\n");
 		
 		while (cont) 
 		{
 			try 
 			{
-				cont = createOperatoerIteration(step);
+				cont = createUserIteration(step);
 				step++;
 			} catch (Exception e) 
 			{
@@ -244,14 +244,14 @@ public class TUI implements ITUI
 
 		try 
 		{
-			DAO.createOperatoer(DTO);
+			DAO.createUser(DTO);
 		} catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
 		}
 	}
 
-     public void updateOperatoer() throws Exception
+     public void updateUser() throws Exception
      {
          try 
          {
@@ -259,18 +259,18 @@ public class TUI implements ITUI
              while (true)
              {
 
-                 System.out.println("=============================");
-                 System.out.println("|     UPDATE SELECTION       |");
-                 System.out.println("==============================");
-                 System.out.println("| Updates:                   |");
-                 System.out.println("|      1. Operatoer ID       |");
-                 System.out.println("|      2. Operatoer name     |");
-                 System.out.println("|      3. Operatoer Ini      |");
-                 System.out.println("|      4. Operatoer Role     |");
-                 System.out.println("|      5. Operatoer CPR      |");
-                 System.out.println("|      6. Operatoer Password |");
-                 System.out.println("|      7. Return             |");
-                 System.out.println("==============================");
+                 System.out.println("============================");
+                 System.out.println("|     UPDATE SELECTION     |");
+                 System.out.println("============================");
+                 System.out.println("| Updates:                 |");
+                 System.out.println("|      1. User ID          |");
+                 System.out.println("|      2. User name        |");
+                 System.out.println("|      3. User Initials    |");
+                 System.out.println("|      4. User Role        |");
+                 System.out.println("|      5. User CPR         |");
+                 System.out.println("|      6. User Password    |");
+                 System.out.println("|      7. Return           |");
+                 System.out.println("============================");
 
                  int chooseUpdate = scan.nextInt();
                  int ID;
@@ -281,53 +281,53 @@ public class TUI implements ITUI
                  {
                  case 1:
                      System.out.println("============================");
-                     System.out.println("|      UPDATE Operatoer ID |");
+                     System.out.println("|      UPDATE USER ID      |");
                      System.out.println("============================");
                      
-                     System.out.println("Enter Operatoer ID: ");
+                     System.out.println("Enter user ID: ");
                      ID = scan.nextInt();
                      
-                     System.out.println("Enter new Operatoer ID: ");
+                     System.out.println("Enter new user ID: ");
                      int newID = scan.nextInt();
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.setOprId(newID);
                      
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUser(this.DTO);
                      
                      break;
                  case 2:
                      System.out.println("============================");
-                     System.out.println("|   UPDATE Operatoer NAME  |");
+                     System.out.println("|     UPDATE USER NAME     |");
                      System.out.println("============================");
                      
-                     System.out.println("Enter Operatoer ID: ");
+                     System.out.println("Enter user ID: ");
                      ID = scan.nextInt();
                      
-                     System.out.println("Enter new Operatoer name: ");
+                     System.out.println("Enter new user name: ");
                      String newName = scan.next();
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.setOprNavn(newName);
                      
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUser(this.DTO);
                      
                      break;
                  case 3:
                      System.out.println("============================");
-                     System.out.println("|   UPDATE Operatoer INI   |");
+                     System.out.println("|   UPDATE USER INITIALS   |");
                      System.out.println("============================");
                      
-                     System.out.println("Enter Operatoer ID: ");
+                     System.out.println("Enter user ID: ");
                      ID = scan.nextInt();
                      
-                     System.out.println("Enter new Operatoer initials: ");
+                     System.out.println("Enter new user initials: ");
                      String newIni = scan.next();
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.setIni(newIni);
                      
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUser(this.DTO);
                   
                      break;
                  case 4:
@@ -335,7 +335,7 @@ public class TUI implements ITUI
                      System.out.println("|        UPDATE ROLE       |");
                      System.out.println("============================");
                      
-                     System.out.println("Enter Operatoer ID: ");
+                     System.out.println("Enter user ID: ");
                      ID = scan.nextInt();
                      scan.nextLine();
                      
@@ -354,39 +354,45 @@ public class TUI implements ITUI
                            }
                      }
                      
+<<<<<<< HEAD
                      this.DTO = DAO.getOperatoer(ID);
                      this.DTO.setRolle(newRole);
                      DAO.updateOperatoer(this.DTO);
+=======
+                     this.DTO = DAO.getUser(ID);
+                     this.DTO.addRole(newRole);
+                     DAO.updateUser(this.DTO);
+>>>>>>> branch 'Stuart' of https://github.com/Archimedes00/2.sem.databaseprojekt/
                      break;
                 	 
                  case 5:
-                     System.out.println("=================================");
-                     System.out.println("|      UPDATE Operatoer CPR     |");
-                     System.out.println("=================================");
+                     System.out.println("============================");
+                     System.out.println("|      UPDATE USER CPR     |");
+                     System.out.println("============================");
                      
-                     System.out.println("Enter Operatoer ID: ");
+                     System.out.println("Enter User ID: ");
                      ID = scan.nextInt();
                      
-                     System.out.println("Enter new Operatoer CPR: ");
+                     System.out.println("Enter new user CPR: ");
                      String newCPR = scan.next();
                      
-                     this.DTO = DAO.getOperatoer(ID);
+                     this.DTO = DAO.getUser(ID);
                      this.DTO.setCpr(newCPR);
                      
-                     DAO.updateOperatoer(this.DTO);
+                     DAO.updateUser(this.DTO);
                      
                      break;
                      
                  case 6:
-                	 System.out.println("==================================");
-                     System.out.println("|    UPDATE Operatoer PASSWORD   |");
-                     System.out.println("==================================");
+                	 System.out.println("============================");
+                     System.out.println("|    UPDATE USER PASSWORD   |");
+                     System.out.println("============================");
                      
-                     System.out.println("Enter Operatoer ID: ");
+                     System.out.println("Enter User ID: ");
                      ID = scan.nextInt();
                      
-                     this.DTO = DAO.getOperatoer(ID);
-                     DAO.updateOperatoer(this.DTO);
+                     this.DTO = DAO.getUser(ID);
+                     DAO.updateUser(this.DTO);
                      break;
                      
                  case 7:
@@ -402,17 +408,17 @@ public class TUI implements ITUI
      }
  }
 
-	public void listOperatoer() 
+	public void listUsers() 
 	{
 		try 
 		{
 			System.out.println("============================");
-			System.out.println("|       LIST Operatoer         |");
+			System.out.println("|       LIST USERS         |");
 			System.out.println("============================");
 
-			for (int i = 0; i < DAO.getOperatoerList().size(); i++)
-				System.out.println("Operatoer ID: " + DAO.getOperatoerList().get(i).getOprId() + "\t Operatoer name: "
-						+ DAO.getOperatoerList().get(i).getOprNavn());
+			for (int i = 0; i < DAO.getUserList().size(); i++)
+				System.out.println("User ID: " + DAO.getUserList().get(i).getOprId() + "\t User name: "
+						+ DAO.getUserList().get(i).getOprNavn());
 
 		} catch (DALException e) 
 		{
@@ -425,10 +431,10 @@ public class TUI implements ITUI
 	{
 		try 
 		{
-			System.out.print("Unavailable Operatoer IDs: {");
-			for (int i = 0; i < DAO.getOperatoerList().size(); i++) 
+			System.out.print("Unavailable user IDs: {");
+			for (int i = 0; i < DAO.getUserList().size(); i++) 
 			{
-				System.out.print(DAO.getOperatoerList().get(i).getOprId() + ", ");
+				System.out.print(DAO.getUserList().get(i).getOprId() + ", ");
 			}
 			System.out.print("...}");
 			System.out.println();
@@ -439,20 +445,29 @@ public class TUI implements ITUI
 		}
 	}
 
-	public void deleteOperatoer() 
+	public void deleteUser() 
 	{
 		try 
 		{
 
 			System.out.println("============================");
-			System.out.println("|       DELETE Operatoer   |");
+			System.out.println("|       DELETE USER        |");
 			System.out.println("============================");
+<<<<<<< HEAD
 			System.out.println("Enter Operatoer ID: ");
 			
+=======
+			System.out.println("Enter user ID: ");
+>>>>>>> branch 'Stuart' of https://github.com/Archimedes00/2.sem.databaseprojekt/
 			int ID = scan.nextInt();
+<<<<<<< HEAD
 			DTO.setOprId(ID);
 			DAO.deactivateOperatoer(this.DTO); /*Skal lave en deaktivate Operator her*/
 			System.out.println("Operatoer has been deleted");
+=======
+			DAO.deleteUser(ID); /*Skal lave en deaktivate Operator her*/
+			System.out.println("User has been deleted");
+>>>>>>> branch 'Stuart' of https://github.com/Archimedes00/2.sem.databaseprojekt/
 
 		} catch (DALException e) 
 		{
@@ -460,7 +475,7 @@ public class TUI implements ITUI
 		}
 	}
      
-	public boolean createOperatoerIteration(int step) throws Exception 
+	public boolean createUserIteration(int step) throws Exception 
 	{
 
 		boolean cont = true;
@@ -475,7 +490,7 @@ public class TUI implements ITUI
 				errorMessage = "Input mismatch. Please try again.\n";
 				listID();
 				
-				System.out.println("Type OperatoerID: ");
+				System.out.println("Type userID: ");
 				
 				int ID = scan.nextInt();
 				
@@ -483,7 +498,7 @@ public class TUI implements ITUI
 				break;
 
 			case 2:
-				System.out.println("Type Operatoer name: ");
+				System.out.println("Type user name: ");
 				String name = scan.nextLine();
 				
 				DTO.setOprNavn(name);
@@ -497,7 +512,7 @@ public class TUI implements ITUI
 				break;
 
 			case 4:
-				System.out.println("Type Operatoer CPR: ");
+				System.out.println("Type user CPR: ");
 				scan.nextLine();
 				
 				String CPR = scan.nextLine();
@@ -553,9 +568,7 @@ public class TUI implements ITUI
 		return cont;
 	}
 
-    
-	
-	
+     public void quitProgram(){}
      
      public void ProduktBatchmenu(ProduktBatchDAO PBatchDAO, ProduktBatchDTO PBatchDTO)
      {
@@ -576,7 +589,7 @@ public class TUI implements ITUI
               System.out.println("| 2. Get ProduktBatchList  |");
               System.out.println("| 3. Create ProduktBatch   |");
               System.out.println("| 4. Update ProduktBatch   |");
-              System.out.println("| 5. Return                |");
+              System.out.println("| 5. GoBack                |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -587,7 +600,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the id of the Product batch");
                 	  NumberInput = scan.nextInt();
-                	  System.out.println(" pb_id: " +PBatchDAO.getProduktBatch(NumberInput));
+                	  System.out.println(PBatchDAO.getProduktBatch(NumberInput));
                 	  
                       break;
                   case 2:
@@ -673,7 +686,7 @@ public class TUI implements ITUI
               System.out.println("| 3. Get ProduktBatchKompList           |");
               System.out.println("| 4. Create ProduktBatchKomp            |");
               System.out.println("| 5. Update ProduktBatchKomp            |");
-              System.out.println("| 6. Return                             |");
+              System.out.println("| 6. GoBack                             |");
               System.out.println("=========================================");
            
               input = scan.nextInt();
@@ -692,7 +705,7 @@ public class TUI implements ITUI
                 	  System.out.print("RaavareBatch ID:   ");
                 	  NumberInput2 = scan.nextInt();
                 	  
-                	  System.out.println(" pb_id: " +PBatchKompDAO.getProduktBatchKomp(NumberInput, NumberInput2));
+                	  System.out.println(PBatchKompDAO.getProduktBatchKomp(NumberInput, NumberInput2));
                 	 
                       break;
                   case 2:
@@ -811,7 +824,7 @@ public class TUI implements ITUI
               System.out.println("| 2. Get ReceptList        |");
               System.out.println("| 3. Create Recept         |");
               System.out.println("| 4. Update Recept         |");
-              System.out.println("| 5. Return                |");
+              System.out.println("| 5. GoBack                |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -822,7 +835,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the id of the Recept");
                 	  NumberInput = scan.nextInt();
-                	  System.out.println(" recept_id: " + ReceptDAO.getRecept(NumberInput));
+                	  System.out.println(ReceptDAO.getRecept(NumberInput));
                 	  
                       break;
                   case 2:
@@ -902,7 +915,7 @@ public class TUI implements ITUI
               System.out.println("| 3. Get ReceptKompList List            |");
               System.out.println("| 4. Create ReceptKomp                  |");
               System.out.println("| 5. Update ReceptKomp                  |");
-              System.out.println("| 6. Return                             |");
+              System.out.println("| 6. GoBack                             |");
               System.out.println("=========================================");
            
               input = scan.nextInt();
@@ -915,7 +928,7 @@ public class TUI implements ITUI
                 	  System.out.println("Please type in the ID of the Recept and the ID for the Raavare");
                 	  NumberInput = scan.nextInt();
                 	  NumberInput2 = scan.nextInt();
-                	  System.out.println(" recept_id: " + ReceptKompDAO.getReceptKomp(NumberInput, NumberInput2));
+                	  System.out.println(ReceptKompDAO.getReceptKomp(NumberInput, NumberInput2));
                 	 
                       break;
                   case 2:
@@ -1017,7 +1030,7 @@ public class TUI implements ITUI
               System.out.println("| 3. Get RaavareBatchList  |");
               System.out.println("| 4  Create RaavareBatch   |");
               System.out.println("| 5. Update RaavareBatch   |");
-              System.out.println("| 6. Return                |");
+              System.out.println("| 6. GoBack                |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -1029,7 +1042,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the ID of the RaavareBatch");
                 	  NumberInput = scan.nextInt();
-                	  System.out.println(" rb_id: " + RaavareBatchDAO.getRaavareBatch(NumberInput));
+                	  System.out.println(RaavareBatchDAO.getRaavareBatch(NumberInput));
                 
                       break;
                   case 2:
@@ -1127,7 +1140,7 @@ public class TUI implements ITUI
               System.out.println("| 2. Get RaavareList       |");
               System.out.println("| 3. Create Raavare        |");
               System.out.println("| 4. Update Raavare        |");
-              System.out.println("| 5. Return                |");
+              System.out.println("| 5. GoBack                |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -1138,7 +1151,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the ID of the Raavare");
                 	  NumberInput = scan.nextInt();
-                	  System.out.println(" raavare_id: " + RaavareDAO.getRaavare(NumberInput));
+                	  System.out.println(RaavareDAO.getRaavare(NumberInput));
                 	
                       break;
                   case 2:

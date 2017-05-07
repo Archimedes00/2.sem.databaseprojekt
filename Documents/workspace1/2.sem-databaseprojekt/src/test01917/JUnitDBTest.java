@@ -28,13 +28,18 @@ public class JUnitDBTest {
 	}
 	
 	public void opretOperator() throws Exception {
+
+		MySQLOperatoerDAO uDAO = new MySQLOperatoerDAO(connector);
 		OperatoerDTO opr = new OperatoerDTO(8, "Henning", "HEN", "123421-0987", "hej", 1);
+		uDAO.createOperatoer(opr);
+		System.out.println(uDAO.getOperatoer(opr.getOprId()).toString());
+
 		
-		connector.doUpdate(
-				"INSERT INTO operatoer(opr_id, opr_navn, ini, cpr, password, opr_status) VALUES " +
-				"(" + opr.getOprId() + ", '" + opr.getOprNavn() + "', '" + opr.getIni() + "', '" + 
-				opr.getCpr() + "', '" + opr.getPassword() + "', " + opr.getStatus() + ");"
-			);
+//		connector.doUpdate(
+//				"INSERT INTO operatoer(opr_id, opr_navn, ini, cpr, password, opr_status) VALUES " +
+//				"(" + opr.getOprId() + ", '" + opr.getOprNavn() + "', '" + opr.getIni() + "', '" + 
+//				opr.getCpr() + "', '" + opr.getPassword() + "', " + opr.getStatus() + ");"
+//			);
 		
 		System.out.println("Bruger oprettet. Primary key: 8");
 	}
