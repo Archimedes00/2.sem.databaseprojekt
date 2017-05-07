@@ -1,7 +1,7 @@
 package dto01917;
 
 
-public class UserDTO
+public class OperatoerDTO
 {
 	/** Operatoer-identifikationsnummer (opr_id) i omraadet 1-99999999. Vaelges af brugerne */
 	int oprId;                     
@@ -16,7 +16,7 @@ public class UserDTO
 	/** Operatoer status; 1 for aktiv, 0 for inaktiv */
 	int oprStatus;
 
-	public UserDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus)
+	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus)
 	{
 		this.oprId = oprId;
 		this.oprNavn = oprNavn;
@@ -26,7 +26,7 @@ public class UserDTO
 		this.oprStatus = oprStatus;
 	}
 	
-    public UserDTO(UserDTO opr)
+    public OperatoerDTO(OperatoerDTO opr)
     {
     	this.oprId = opr.getOprId();
     	this.oprNavn = opr.getOprNavn();

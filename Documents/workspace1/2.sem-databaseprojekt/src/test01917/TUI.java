@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.text.DecimalFormat;
 
 import connector01917.Connector;
-import daoimpl01917.MySQLUserDAO;
+import daoimpl01917.MySQLOperatoerDAO;
 import daoimpl01917.MySQLProduktBatchDAO;
 import daoimpl01917.MySQLProduktBatchKompDAO;
 import daoimpl01917.MySQLRaavareBatchDAO;
@@ -20,19 +20,19 @@ import daointerfaces01917.RaavareBatchDAO;
 import daointerfaces01917.RaavareDAO;
 import daointerfaces01917.ReceptDAO;
 import daointerfaces01917.ReceptKompDAO;
-import daointerfaces01917.UserDAO;
+import daointerfaces01917.OperatoerDAO;
 import dto01917.ProduktBatchDTO;
 import dto01917.ProduktBatchKompDTO;
 import dto01917.RaavareBatchDTO;
 import dto01917.RaavareDTO;
 import dto01917.ReceptDTO;
 import dto01917.ReceptKompDTO;
-import dto01917.UserDTO;
+import dto01917.OperatoerDTO;
 
 public class TUI implements ITUI
 {
-	private UserDAO DAO;
-	private UserDTO DTO;
+	private OperatoerDAO DAO;
+	private OperatoerDTO DTO;
 	private ProduktBatchDAO PBatchDAO;
 	private ProduktBatchDTO PBatchDTO;
 	private ProduktBatchKompDAO PBatchKompDAO;
@@ -108,8 +108,8 @@ public class TUI implements ITUI
         {
             case 1:	
             	{
-            		UserDAO DAO = new MySQLUserDAO(this.C);
-            		UserDTO DTO = new UserDTO(0, null, null, null, null, 1); //Initialising the object//
+            		OperatoerDAO DAO = new MySQLOperatoerDAO(this.C);
+            		OperatoerDTO DTO = new OperatoerDTO(0, null, null, null, null, 1); //Initialising the object//
             		Usermenu(DAO, DTO);
             		break;
                 }
@@ -165,7 +165,7 @@ public class TUI implements ITUI
       
 	}
 
-	public void Usermenu(UserDAO DAO, UserDTO DTO)
+	public void Usermenu(OperatoerDAO DAO, OperatoerDTO DTO)
 	{	
 		do 
 		{
@@ -585,7 +585,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the id of the Product batch");
                 	  NumberInput = scan.nextInt();
-                	  System.out.println(PBatchDAO.getProduktBatch(NumberInput));
+                	  System.out.println(" pb_id: " +PBatchDAO.getProduktBatch(NumberInput));
                 	  
                       break;
                   case 2:
@@ -690,7 +690,7 @@ public class TUI implements ITUI
                 	  System.out.print("RaavareBatch ID:   ");
                 	  NumberInput2 = scan.nextInt();
                 	  
-                	  System.out.println(PBatchKompDAO.getProduktBatchKomp(NumberInput, NumberInput2));
+                	  System.out.println(" pb_id: " +PBatchKompDAO.getProduktBatchKomp(NumberInput, NumberInput2));
                 	 
                       break;
                   case 2:
@@ -820,7 +820,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the id of the Recept");
                 	  NumberInput = scan.nextInt();
-                	  System.out.println(ReceptDAO.getRecept(NumberInput));
+                	  System.out.println(" recept_id: " + ReceptDAO.getRecept(NumberInput));
                 	  
                       break;
                   case 2:
@@ -913,7 +913,7 @@ public class TUI implements ITUI
                 	  System.out.println("Please type in the ID of the Recept and the ID for the Raavare");
                 	  NumberInput = scan.nextInt();
                 	  NumberInput2 = scan.nextInt();
-                	  System.out.println(ReceptKompDAO.getReceptKomp(NumberInput, NumberInput2));
+                	  System.out.println(" recept_id: " + ReceptKompDAO.getReceptKomp(NumberInput, NumberInput2));
                 	 
                       break;
                   case 2:
@@ -1027,7 +1027,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the ID of the RaavareBatch");
                 	  NumberInput = scan.nextInt();
-                	  System.out.println(RaavareBatchDAO.getRaavareBatch(NumberInput));
+                	  System.out.println(" rb_id: " + RaavareBatchDAO.getRaavareBatch(NumberInput));
                 
                       break;
                   case 2:
@@ -1136,7 +1136,7 @@ public class TUI implements ITUI
                 	  
                 	  System.out.println("Please type in the ID of the Raavare");
                 	  NumberInput = scan.nextInt();
-                	  System.out.println(RaavareDAO.getRaavare(NumberInput));
+                	  System.out.println(" raavare_id: " + RaavareDAO.getRaavare(NumberInput));
                 	
                       break;
                   case 2:
