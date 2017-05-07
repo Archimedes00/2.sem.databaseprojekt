@@ -11,4 +11,5 @@ public interface OperatoerDAO {
 	List<OperatoerDTO> getOperatoerList() throws DALException;
 	void createOperatoer(OperatoerDTO opr) throws DALException;
 	void updateOperatoer(OperatoerDTO opr) throws DALException;
+	void deactivateOperatoer(OperatoerDTO opr) throws DALException;
 }

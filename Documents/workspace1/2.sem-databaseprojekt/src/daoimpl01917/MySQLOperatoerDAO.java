@@ -27,7 +27,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 	    try {
 	    	ResultSet rs = connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId);
 	    	if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke");
-	    	return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status"));
+	    	return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status"), rs.getString("rolle"));
 	    }
 	    catch (SQLException e) {throw new DALException(e); }
 		
@@ -68,7 +68,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 			ResultSet rs = connector.doQuery("SELECT * FROM operatoer where opr_status = 1");
 			while (rs.next()) 
 			{
-				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status")));
+				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status"), rs.getString("rolle")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }

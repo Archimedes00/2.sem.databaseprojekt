@@ -12,11 +12,13 @@ public class OperatoerDTO
 	/** Operatoer cpr-nr 10 karakterer */
 	String cpr;                 
 	/** Operatoer password min. 7 max. 8 karakterer */
-	String password;        
+	String password; 
+	
+	String rolle;  
 	/** Operatoer status; 1 for aktiv, 0 for inaktiv */
 	int oprStatus;
 
-	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus)
+	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus, String rolle)
 	{
 		this.oprId = oprId;
 		this.oprNavn = oprNavn;
@@ -24,6 +26,7 @@ public class OperatoerDTO
 		this.cpr = cpr;
 		this.password = password;
 		this.oprStatus = oprStatus;
+		this.rolle = rolle;
 	}
 	
     public OperatoerDTO(OperatoerDTO opr)
@@ -34,6 +37,7 @@ public class OperatoerDTO
     	this.cpr = opr.getCpr();
     	this.password = opr.getPassword();
     	this.oprStatus = opr.getStatus();
+    	this.rolle = opr.getRolle();
     }
     
     public int getStatus() { return oprStatus;}
@@ -48,5 +52,7 @@ public class OperatoerDTO
 	public void setCpr(String cpr) { this.cpr = cpr; }
 	public String getPassword() { return password; }
 	public void setPassword(String password) { this.password = password; }
-	public String toString() { return oprId + "\t" + oprNavn + "\t" + ini + "\t" + cpr + "\t" + password + "\t" + oprStatus; }
+	public String toString() { return oprId + "\t" + oprNavn + "\t" + ini + "\t" + cpr + "\t" + password + "\t" + oprStatus + "\t" + rolle; }
+	public String getRolle() { return rolle; }
+	public void setRolle(String rolle) { this.rolle = rolle; }
 }

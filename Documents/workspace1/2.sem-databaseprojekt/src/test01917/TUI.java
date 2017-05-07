@@ -355,7 +355,7 @@ public class TUI implements ITUI
                      }
                      
                      this.DTO = DAO.getOperatoer(ID);
-                     this.DTO.addRole(newRole);
+                     this.DTO.setRolle(newRole);
                      DAO.updateOperatoer(this.DTO);
                      break;
                 	 
@@ -448,8 +448,10 @@ public class TUI implements ITUI
 			System.out.println("|       DELETE Operatoer   |");
 			System.out.println("============================");
 			System.out.println("Enter Operatoer ID: ");
+			
 			int ID = scan.nextInt();
-			DAO.deleteOperatoer(ID); /*Skal lave en deaktivate Operator her*/
+			DTO.setOprId(ID);
+			DAO.deactivateOperatoer(this.DTO); /*Skal lave en deaktivate Operator her*/
 			System.out.println("Operatoer has been deleted");
 
 		} catch (DALException e) 
@@ -518,16 +520,16 @@ public class TUI implements ITUI
 				switch (chooseRole) {
 				case 1:
 					// set Operator
-					DTO.addRole("Admin");
+					DTO.setRolle("Admin");
 					break;
 				case 2:
-					DTO.addRole("Operator"); // set Foreman
+					DTO.setRolle("Operator"); // set Foreman
 					break;
 				case 3:
-					DTO.addRole("Foreman");
+					DTO.setRolle("Foreman");
 					break;
 				case 4:
-					DTO.addRole("Pharmacist");
+					DTO.setRolle("Pharmacist");
 					break;
 				case 5:
 					System.out.println("Returning...");
