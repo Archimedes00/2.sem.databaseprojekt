@@ -82,8 +82,7 @@ public class TUI implements ITUI
 		
 		System.out.println("Please choose which Schema to operate in");
 		
-		
-		System.out.println("============================");
+		System.out.println("=============================");
         System.out.println("|       MENU SELECTION      |");
         System.out.println("=============================");
         System.out.println("| Options:                  |");
