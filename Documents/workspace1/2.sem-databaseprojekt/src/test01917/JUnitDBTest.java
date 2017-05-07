@@ -115,25 +115,32 @@ public class JUnitDBTest {
 	}
 	
 	public void resetTestResults() {
-		System.out.println("Tryk på en knap for at gendanne testen.");
+		System.out.println("\nTryk på en knap for at gendanne testen.");
 		scan.nextLine();
 		try {
-			
-		connector.doUpdate("DELETE FROM produktbatchkomponent WHERE pb_id = 6 AND rb_id = 8;");
-		System.out.println("Produktbachkomponent slettet.");
-		connector.doUpdate("DELETE FROM operatoer WHERE opr_id = 8;");
-		System.out.println("Operator slettet.");
-		connector.doUpdate("DELETE FROM raavarebatch WHERE rb_id = 8;");
-		System.out.println("Raavarebatch slettet.");
-		connector.doUpdate("DELETE FROM raavare WHERE raavare_id = 8;");
-		System.out.println("Raavare slettet.");
-		connector.doUpdate("DELETE FROM produktbatch WHERE pb_id = 6;");
-		System.out.println("Produktbatch slettet.");
-		connector.doUpdate("DELETE FROM receptkomponent WHERE recept_id = 4;");
-		System.out.println("Receptkomponent slettet.");
-		connector.doUpdate("DELETE FROM recept WHERE recept_id = 4;");
-		System.out.println("Recept slettet.");
+		
+		//CALL resetTest kører proceduren resetTest i databasen.
+		connector.doUpdate("CALL resetTest");
+		System.out.println("Test-data gendannet.");
+		
+		//Proceduren erstatter alt udkommenteret kode nedenunder.
+		
+//		connector.doUpdate("DELETE FROM produktbatchkomponent WHERE pb_id = 6 AND rb_id = 8;");
+//		System.out.println("Produktbachkomponent slettet.");
+//		connector.doUpdate("DELETE FROM operatoer WHERE opr_id = 8;");
+//		System.out.println("Operator slettet.");
+//		connector.doUpdate("DELETE FROM raavarebatch WHERE rb_id = 8;");
+//		System.out.println("Raavarebatch slettet.");
+//		connector.doUpdate("DELETE FROM raavare WHERE raavare_id = 8;");
+//		System.out.println("Raavare slettet.");
+//		connector.doUpdate("DELETE FROM produktbatch WHERE pb_id = 6;");
+//		System.out.println("Produktbatch slettet.");
+//		connector.doUpdate("DELETE FROM receptkomponent WHERE recept_id = 4;");
+//		System.out.println("Receptkomponent slettet.");
+//		connector.doUpdate("DELETE FROM recept WHERE recept_id = 4;");
+//		System.out.println("Recept slettet.");
 		}
+		
 		catch (SQLException ex) {
 			ex.printStackTrace();
 		}
