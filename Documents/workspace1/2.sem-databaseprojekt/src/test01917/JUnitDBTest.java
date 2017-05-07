@@ -7,7 +7,7 @@ import java.util.Scanner;
 import org.junit.Assert;
 
 import connector01917.Connector;
-import daoimpl01917.MySQLUserDAO;
+import daoimpl01917.MySQLOperatoerDAO;
 import daointerfaces01917.DALException;
 import dto01917.*;
 
@@ -28,10 +28,12 @@ public class JUnitDBTest {
 	}
 	
 	public void opretOperator() throws Exception {
-		MySQLUserDAO uDAO = new MySQLUserDAO(connector);
-		UserDTO opr = new UserDTO(8, "Henning", "HEN", "123421-0987", "hej", 1);
-		uDAO.createUser(opr);
-		System.out.println(uDAO.getUser(opr.getOprId()).toString());
+
+		MySQLOperatoerDAO uDAO = new MySQLOperatoerDAO(connector);
+		OperatoerDTO opr = new OperatoerDTO(8, "Henning", "HEN", "123421-0987", "hej", 1);
+		uDAO.createOperatoer(opr);
+		System.out.println(uDAO.getOperatoer(opr.getOprId()).toString());
+
 		
 //		connector.doUpdate(
 //				"INSERT INTO operatoer(opr_id, opr_navn, ini, cpr, password, opr_status) VALUES " +
