@@ -21,7 +21,7 @@ public class RolleDTO
 	public int getOprId() { return oprId; }
 	public void setOprId(int oprId) { this.oprId = oprId; }
 	public String getRolle() { return rolle; }
-	public void setRolle(String rolle) { this.rolle = rolle; }
-	public String toString() { return oprId + "\t" + rolle; }
+	public void setRolle(String rolle) { this.rolle = rolle; 
+	public String toString() { return "(" + oprId + ", " + rolle + ")"; }
 }
 //
