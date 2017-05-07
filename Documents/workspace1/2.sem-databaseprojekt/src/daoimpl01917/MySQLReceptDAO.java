@@ -1,5 +1,5 @@
 package daoimpl01917;
-
+/** Author Bijan Negari */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,8 +50,8 @@ public class MySQLReceptDAO implements ReceptDAO {
 		try 
 		{
 			String query =
-					"Call " +
-					"(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "')";
+					"Call CreateNewRecept ('" +
+					 recept.getReceptId() + "', '" + recept.getReceptNavn() + "')";
 
 			PreparedStatement pstmt = this.connector.getConnection().prepareCall("{call CreateNewRecepts(?,?)}");
 			

@@ -99,7 +99,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 		}
 	}
 
-		
+	/** Author Bijan Negari */	
 	public void deactivateOperatoer(OperatoerDTO opr) throws DALException {
 		try {
 			connector.doUpdate(
