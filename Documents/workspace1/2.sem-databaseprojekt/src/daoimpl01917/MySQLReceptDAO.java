@@ -50,12 +50,17 @@ public class MySQLReceptDAO implements ReceptDAO {
 		try 
 		{
 			String query =
-					"INSERT INTO recept (recept_id, recept_navn) VALUES " +
+					"Call " +
 					"(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "')";
 
-			PreparedStatement pstmt = this.connector.getConnection().prepareStatement(query);
+			PreparedStatement pstmt = this.connector.getConnection().prepareCall("{call CreateNewRecepts(?,?,?)}");
 			
-			pstmt.executeQuery();
+			pstmt.setInt(1, recept.getReceptId());
+			pstmt.setString(2, recept.getReceptNavn());
+			
+			//pstmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+			pstmt.executeUpdate();
+
 	
 			/*
 			connector.doUpdate
