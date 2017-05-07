@@ -47,12 +47,13 @@ public class MySQLRaavareDAO implements RaavareDAO {
 	
 
 	@Override
-	public void createRaavare(RaavareDTO raavare) throws DALException {
+	public void createRaavare(RaavareDTO raavare) throws DALException {				
 		try {
 			connector.doUpdate(
 				"INSERT INTO raavare(raavare_id, raavare_navn, leverandoer) VALUES " +
 				"(" + raavare.getRaavareId() + ", '" + raavare.getRaavareNavn() + "', '" + raavare.getLeverandoer() + "')"
 			);
+		
 		} catch ( SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 			throw new DALException("Duplicate entry");

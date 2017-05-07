@@ -21,6 +21,8 @@ public class UsersDTO
 	String password;        
 	/** Operatoer status; 1 for aktiv, 0 for inaktiv */
 	int oprStatus;
+	/** */
+	String rolle = "Pharmacist";
 
 	public UsersDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus)
 	{
@@ -39,7 +41,7 @@ public class UsersDTO
     	this.ini = opr.getIni();
     	this.cpr = opr.getCpr();
     	this.password = opr.getPassword();
-    	this.oprStatus = opr.getStatus();
+    	this.oprStatus = opr.getStatus();	
     }
     
     public int getStatus() { return oprStatus;}
@@ -55,4 +57,12 @@ public class UsersDTO
 	public String getPassword() { return password; }
 	public void setPassword(String password) { this.password = password; }
 	public String toString() { return oprId + "\t" + oprNavn + "\t" + ini + "\t" + cpr + "\t" + password + "\t" + oprStatus; }
+	
+    public String getRolle() {return rolle; }
+    public void setRolle(String rolle) {
+    	if (rolle.equalsIgnoreCase("admin") || rolle.equalsIgnoreCase("operatoer") || rolle.equalsIgnoreCase("foreman") || rolle.equalsIgnoreCase("pharmacist")) 
+    		this.rolle = rolle;
+    	else
+    		this.rolle = "pharmacist";
+    }
 }
