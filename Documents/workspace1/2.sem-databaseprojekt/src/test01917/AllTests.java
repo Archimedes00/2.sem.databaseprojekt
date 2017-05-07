@@ -14,7 +14,9 @@ import org.junit.runners.Suite.SuiteClasses;
 	ReceptTest.class, 
 	ReceptKompTest.class
 		 })
+
 public class AllTests {
 	
-	JUnitDBTest test = new JUnitDBTest();
 }
+
+
