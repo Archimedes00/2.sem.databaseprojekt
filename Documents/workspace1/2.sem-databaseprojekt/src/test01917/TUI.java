@@ -43,7 +43,7 @@ public class TUI implements ITUI
 	private RaavareDTO RaavareDTO;
 	private Connector C;
 
-	int input, conStatus=0;
+	int input, connStatus=0;
 	Scanner scan = new Scanner(System.in);
 	Scanner scan2 = new Scanner(System.in);
 
@@ -74,9 +74,9 @@ public class TUI implements ITUI
 	}
 	public void Selector()
 	{
-		if(this.conStatus == 0)
+		if(this.connStatus == 0)
 		{
-			this.conStatus = 1;
+			this.connStatus = 1;
 			ConEstablishment();
 		}
 		
