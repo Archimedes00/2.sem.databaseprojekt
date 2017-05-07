@@ -1,10 +1,6 @@
 package test01917;
-/**/
-import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.text.DecimalFormat;
-
 import connector01917.Connector;
 import daoimpl01917.MySQLOperatoerDAO;
 import daoimpl01917.MySQLProduktBatchDAO;
