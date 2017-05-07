@@ -574,7 +574,7 @@ public class TUI implements ITUI
               System.out.println("| 2. Get ProduktBatchList  |");
               System.out.println("| 3. Create ProduktBatch   |");
               System.out.println("| 4. Update ProduktBatch   |");
-              System.out.println("| 5. GoBack                |");
+              System.out.println("| 5. Return                |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -671,7 +671,7 @@ public class TUI implements ITUI
               System.out.println("| 3. Get ProduktBatchKompList           |");
               System.out.println("| 4. Create ProduktBatchKomp            |");
               System.out.println("| 5. Update ProduktBatchKomp            |");
-              System.out.println("| 6. GoBack                             |");
+              System.out.println("| 6. Return                             |");
               System.out.println("=========================================");
            
               input = scan.nextInt();
@@ -809,7 +809,7 @@ public class TUI implements ITUI
               System.out.println("| 2. Get ReceptList        |");
               System.out.println("| 3. Create Recept         |");
               System.out.println("| 4. Update Recept         |");
-              System.out.println("| 5. GoBack                |");
+              System.out.println("| 5. Return                |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -900,7 +900,7 @@ public class TUI implements ITUI
               System.out.println("| 3. Get ReceptKompList List            |");
               System.out.println("| 4. Create ReceptKomp                  |");
               System.out.println("| 5. Update ReceptKomp                  |");
-              System.out.println("| 6. GoBack                             |");
+              System.out.println("| 6. Return                             |");
               System.out.println("=========================================");
            
               input = scan.nextInt();
@@ -1015,7 +1015,7 @@ public class TUI implements ITUI
               System.out.println("| 3. Get RaavareBatchList  |");
               System.out.println("| 4  Create RaavareBatch   |");
               System.out.println("| 5. Update RaavareBatch   |");
-              System.out.println("| 6. GoBack                |");
+              System.out.println("| 6. Return                |");
               System.out.println("============================");
            
               input = scan.nextInt();
@@ -1125,7 +1125,7 @@ public class TUI implements ITUI
               System.out.println("| 2. Get RaavareList       |");
               System.out.println("| 3. Create Raavare        |");
               System.out.println("| 4. Update Raavare        |");
-              System.out.println("| 5. GoBack                |");
+              System.out.println("| 5. Return                |");
               System.out.println("============================");
            
               input = scan.nextInt();
