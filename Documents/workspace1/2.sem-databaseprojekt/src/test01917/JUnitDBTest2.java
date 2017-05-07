@@ -12,7 +12,7 @@ import daoimpl01917.*;
 import daointerfaces01917.DALException;
 import dto01917.*;
 
-public class JUnitDBTest {
+public class JUnitDBTest2 {
 
 	private Connector connector = new Connector(
 			"localhost", 		//host
@@ -44,12 +44,13 @@ public class JUnitDBTest {
 	}
 	
 	//Test oprettelse af- og get operator
-	public void opretOperator() throws Exception {
+	public String opretOperator() throws Exception {
 		OperatoerDTO opr = new OperatoerDTO(8, "Henning", "HEN", "123421-0987", "hej", 1); //opretter bruger
 		MySQLOperatoerDAO uDAO = new MySQLOperatoerDAO(connector);	//opretter DAO
 		uDAO.createOperatoer(opr);	//opretter brugeren i databasen
 		System.out.println("Bruger oprettet. Primary key: 8");
 		System.out.println(uDAO.getOperatoer(opr.getOprId()).toString() + "\n"); //printer brugeren til consollen, taget fra databasen
+		return uDAO.getOperatoer(opr.getOprId()).toString() + "\n";
 	}
 	
 	//Test opret get række i raavare

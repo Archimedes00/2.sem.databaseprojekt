@@ -17,5 +17,8 @@ public class Main
 		catch(Exception ex) {
 			ex.printStackTrace();
 		}
+		
+//		operatorTest test = new operatorTest();
+//		test.test();
 	}
 }
