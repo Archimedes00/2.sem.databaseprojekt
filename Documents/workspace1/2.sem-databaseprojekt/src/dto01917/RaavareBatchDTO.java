@@ -20,6 +20,6 @@ public class RaavareBatchDTO
 	public double getMaengde() { return maengde; }
 	public void setMaengde(double maengde) { this.maengde = maengde; }
 	public String toString() { 
-		return "(" + rbId + ", " + raavareId +", " + maengde + ")"; 
+		return rbId + ", " + raavareId +", " + maengde; 
 	}
 }

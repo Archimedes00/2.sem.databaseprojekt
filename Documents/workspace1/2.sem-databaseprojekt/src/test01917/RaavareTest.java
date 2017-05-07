@@ -1,18 +1,17 @@
 package test01917;
-
 import static org.junit.Assert.*;
-import org.hamcrest.Matchers.*;
+
 import org.junit.Test;
 
-public class operatorTest {
+public class RaavareTest {
 
 	@Test
 	public void test() {
 		JUnitDBTest test = new JUnitDBTest();
-		String expected = "(8, Henning, HEN, 123421-0987, hej, 1)";
+		String expected = "(8, champignon, Noget andet)";
 		System.out.println("Expected: " + expected);
 		try {
-		String actual = test.opretOperator();
+		String actual = test.opretRaavare();
 		System.out.println("Actual: " + actual);
 		assertNotNull(actual);
 		assertNotNull(expected);
@@ -22,5 +21,6 @@ public class operatorTest {
 			ex.printStackTrace();
 		}
 	}
+
 
 }
