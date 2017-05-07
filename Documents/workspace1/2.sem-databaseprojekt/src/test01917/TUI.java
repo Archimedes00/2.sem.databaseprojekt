@@ -88,7 +88,7 @@ public class TUI implements ITUI
 		System.out.println("|       MENU SELECTION      |");
 		System.out.println("=============================");
 		System.out.println("| Options:                  |");
-		System.out.println("|      1. Operatoer              |");
+		System.out.println("|      1. Operatoer         |");
 		System.out.println("|      2. ProduktBatch      |");
 		System.out.println("|      3. ProduktBatchKomp  |");
 		System.out.println("|      4. Recept            |");
@@ -222,9 +222,9 @@ public class TUI implements ITUI
 		int step = 1;
 		boolean cont = true;
 
-		System.out.println("============================");
+		System.out.println("=================================");
 		System.out.println("|        CREATE Operatoer       |");
-		System.out.println("============================\n");
+		System.out.println("===============================\n");
 
 		while (cont) 
 		{
@@ -256,18 +256,18 @@ public class TUI implements ITUI
 				while (true)
 				{
 
-					System.out.println("============================");
-					System.out.println("|     UPDATE SELECTION     |");
-					System.out.println("============================");
-					System.out.println("| Updates:                 |");
+					System.out.println("=================================");
+					System.out.println("|     UPDATE SELECTION          |");
+					System.out.println("=================================");
+					System.out.println("| Updates:                      |");
 					System.out.println("|      1. Operatoer ID          |");
 					System.out.println("|      2. Operatoer name        |");
 					System.out.println("|      3. Operatoer Initials    |");
 					System.out.println("|      4. Operatoer Role        |");
 					System.out.println("|      5. Operatoer CPR         |");
 					System.out.println("|      6. Operatoer Password    |");
-					System.out.println("|      7. Return           |");
-					System.out.println("============================");
+					System.out.println("|      7. Return                |");
+					System.out.println("=================================");
 
 					int chooseUpdate = scan.nextInt();
 					int ID;
@@ -277,9 +277,9 @@ public class TUI implements ITUI
 					switch (chooseUpdate) 
 					{
 					case 1:
-						System.out.println("============================");
-						System.out.println("|      UPDATE Operatoer ID |");
-						System.out.println("============================");
+						System.out.println("================================");
+						System.out.println("|      UPDATE Operatoer ID     |");
+						System.out.println("================================");
 
 						System.out.println("Enter Operatoer ID: ");
 						ID = scan.nextInt();
@@ -294,9 +294,9 @@ public class TUI implements ITUI
 
 						break;
 					case 2:
-						System.out.println("============================");
-						System.out.println("|     UPDATE Operatoer NAME |");
-						System.out.println("============================");
+						System.out.println("================================");
+						System.out.println("|     UPDATE Operatoer NAME    |");
+						System.out.println("================================");
 
 						System.out.println("Enter Operatoer ID: ");
 						ID = scan.nextInt();
@@ -311,9 +311,9 @@ public class TUI implements ITUI
 
 						break;
 					case 3:
-						System.out.println("============================");
+						System.out.println("=================================");
 						System.out.println("|   UPDATE Operatoer INITIALS   |");
-						System.out.println("============================");
+						System.out.println("=================================");
 
 						System.out.println("Enter Operatoer ID: ");
 						ID = scan.nextInt();
@@ -358,9 +358,9 @@ public class TUI implements ITUI
 						break;
 
 					case 5:
-						System.out.println("============================");
+						System.out.println("=================================");
 						System.out.println("|      UPDATE Operatoer CPR     |");
-						System.out.println("============================");
+						System.out.println("=================================");
 
 						System.out.println("Enter Operatoer ID: ");
 						ID = scan.nextInt();
@@ -376,9 +376,9 @@ public class TUI implements ITUI
 						break;
 
 					case 6:
-						System.out.println("============================");
+						System.out.println("==================================");
 						System.out.println("|    UPDATE Operatoer PASSWORD   |");
-						System.out.println("============================");
+						System.out.println("==================================");
 
 						System.out.println("Enter Operatoer ID: ");
 						ID = scan.nextInt();
@@ -408,9 +408,9 @@ public class TUI implements ITUI
 	{
 		try 
 		{
-			System.out.println("============================");
-			System.out.println("|       LIST OperatoerS         |");
-			System.out.println("============================");
+			System.out.println("=================================");
+			System.out.println("|       LIST Operatoers         |");
+			System.out.println("=================================");
 
 			for (int i = 0; i < DAO.getOperatoerList().size(); i++)
 				System.out.println("Operatoer ID: " + DAO.getOperatoerList().get(i).getOprId() + "\t Operatoer name: "
@@ -446,9 +446,9 @@ public class TUI implements ITUI
 		try 
 		{
 
-			System.out.println("============================");
+			System.out.println("=================================");
 			System.out.println("|       DELETE Operatoer        |");
-			System.out.println("============================");
+			System.out.println("=================================");
 
 			System.out.println("Enter Operatoer ID: ");
 
@@ -518,7 +518,7 @@ public class TUI implements ITUI
 					System.out.println("|       ROLE SELECTION     |");
 					System.out.println("============================");
 					System.out.println("| Roles:                   |");
-					System.out.println("|      1. Admin		       |");
+					System.out.println("|      1. Admin            |");
 					System.out.println("|      2. Operator         |");
 					System.out.println("|      3. Foreman          |");
 					System.out.println("|      4. Pharmacist       |");
