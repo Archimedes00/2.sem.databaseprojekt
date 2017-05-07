@@ -65,7 +65,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 		List<OperatoerDTO> list = new ArrayList<OperatoerDTO>();
 		try
 		{
-			ResultSet rs = connector.doQuery("SELECT * FROM operatoer");
+			ResultSet rs = connector.doQuery("SELECT * FROM operatoer where opr_status = 1");
 			while (rs.next()) 
 			{
 				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status")));
