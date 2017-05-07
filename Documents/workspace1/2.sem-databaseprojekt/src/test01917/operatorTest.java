@@ -8,7 +8,7 @@ public class operatorTest {
 
 	@Test
 	public void test() {
-		JUnitDBTest2 test = new JUnitDBTest2();
+		JUnitDBTest test = new JUnitDBTest();
 		String expected = "(8, Henning, HEN, 123421-0987, hej, 1)";
 		System.out.println("Expected: " + expected);
 		try {
@@ -16,7 +16,6 @@ public class operatorTest {
 		System.out.println("Actual: " + actual);
 		assertNotNull(actual);
 		assertNotNull(expected);
-//		assertTrue(actual.matches(expected));
 		assertEquals(expected, actual);
 		}
 		catch (Exception ex) {

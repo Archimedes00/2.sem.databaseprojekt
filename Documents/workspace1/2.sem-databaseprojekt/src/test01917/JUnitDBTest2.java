@@ -50,7 +50,7 @@ public class JUnitDBTest2 {
 		uDAO.createOperatoer(opr);	//opretter brugeren i databasen
 		System.out.println("Bruger oprettet. Primary key: 8");
 		System.out.println(uDAO.getOperatoer(opr.getOprId()).toString() + "\n"); //printer brugeren til consollen, taget fra databasen
-		return uDAO.getOperatoer(opr.getOprId()).toString() + "\n";
+		return uDAO.getOperatoer(opr.getOprId()).toString();
 	}
 	
 	//Test opret get række i raavare
