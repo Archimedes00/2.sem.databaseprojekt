@@ -2,12 +2,13 @@ package test01917;
 
 //
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import org.junit.Assert;
 
 import connector01917.Connector;
-import daoimpl01917.MySQLOperatoerDAO;
+import daoimpl01917.*;
 import daointerfaces01917.DALException;
 import dto01917.*;
 
@@ -20,28 +21,69 @@ public class JUnitDBTest {
 			"root", 			//user
 			"root");			//pass
 	
-	//Test oprettelse af operator
+	
 	Scanner scan = new Scanner(System.in);
+	
+	//Start test
 	public void startTest() {
 		System.out.println("Tryk på en knap for at køre testen.");
 		scan.nextLine();
+		
+		try {
+			
+		opretOperator();
+		opretRaavare();
+		opretRaavareBatch();
+		
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	
+	//Test oprettelse af operator
 	public void opretOperator() throws Exception {
-		OperatoerDTO opr = new OperatoerDTO(8, "Henning", "HEN", "123421-0987", "hej", 1);
-		
-		connector.doUpdate(
-				"INSERT INTO operatoer(opr_id, opr_navn, ini, cpr, password, opr_status) VALUES " +
-				"(" + opr.getOprId() + ", '" + opr.getOprNavn() + "', '" + opr.getIni() + "', '" + 
-				opr.getCpr() + "', '" + opr.getPassword() + "', " + opr.getStatus() + ");"
-			);
-		
+		OperatoerDTO opr = new OperatoerDTO(8, "Henning", "HEN", "123421-0987", "hej", 1); //opretter bruger
+		MySQLOperatoerDAO uDAO = new MySQLOperatoerDAO(connector);	//opretter DAO
+		uDAO.createOperatoer(opr);	//opretter brugeren i databasen
 		System.out.println("Bruger oprettet. Primary key: 8");
+		System.out.println(uDAO.getOperatoer(opr.getOprId()).toString() + "\n"); //printer brugeren til consollen, taget fra databasen
 	}
 	
 	//Test get række i raavare
+	public void opretRaavare() throws Exception {
+		RaavareDTO rv = new RaavareDTO(8, "champignon", "Noget andet");
+		MySQLRaavareDAO rDAO = new MySQLRaavareDAO(connector);
+		rDAO.createRaavare(rv);
+		System.out.println("Raavare oprettet. Primary key: opr_id = 8");
+		System.out.println(rDAO.getRaavare(rv.getRaavareId()).toString() + "\n");
+	}
 	
 	//Test get række i raavarebatch
+	public void opretRaavareBatch() throws Exception {
+		RaavareBatchDTO rb = new RaavareBatchDTO(8, 8, 500);
+		MySQLRaavareBatchDAO rDAO = new MySQLRaavareBatchDAO(connector);
+		RaavareDTO rv = new MySQLRaavareDAO(connector).getRaavare(8);
+		rDAO.createRaavareBatch(rb);
+		System.out.println("Raavarebatch oprettet. Primary key: rb_id = 8");
+		System.out.println(rDAO.getRaavareBatchList(rv.getRaavareId()).toString() + "\n");
+	}
+	
+
+	
+	public void resetTestResults() {
+		System.out.println("Tryk på en knap for at gendanne testen.");
+		scan.nextLine();
+		try {
+		connector.doUpdate("DELETE FROM operatoer WHERE opr_id = 8;");
+		connector.doUpdate("DELETE FROM raavare WHERE raavare_id = 8;");
+		connector.doUpdate("DELETE FROM raavarebatch WHERE rb_id = 8;");
+		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+	}
 	
 	//Test get række i produktbatch
 	
@@ -51,11 +93,6 @@ public class JUnitDBTest {
 	
 	//test get række i receptkomponent
 	
-	
-	public void resetTestResults() {
-		System.out.println("Tryk på en knap for at gendanne testen.");
-		scan.nextLine();
-	}
 	
 //	
 //	public void test () {
