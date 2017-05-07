@@ -11,8 +11,7 @@ public class Main
 		
 //		JUnitDBTest test = new JUnitDBTest();
 //		try {
-//		test.opretOperator();
-//		System.out.println("Bruger oprettet");
+//		test.resetTestResults();
 //		}
 //		catch(Exception ex) {
 //			ex.printStackTrace();
