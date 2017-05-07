@@ -27,7 +27,7 @@ public class MySQLRolleDAO implements RolleDAO{
 			return new RolleDTO (rs.getInt("opr_id"), rs.getString("rolle"));
 		}
 		catch (SQLException e) {throw new DALException(e); }
-//
+
 	}
 
 	public void createRolle(RolleDTO rolle) throws DALException {		

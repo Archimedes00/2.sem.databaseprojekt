@@ -11,6 +11,7 @@ import connector01917.Connector;
 import daointerfaces01917.DALException;
 import daointerfaces01917.OperatoerDAO;
 import dto01917.OperatoerDTO;
+import dto01917.RolleDTO;
 
 
 public class MySQLOperatoerDAO implements OperatoerDAO 
@@ -27,7 +28,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 	    try {
 	    	ResultSet rs = connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId);
 	    	if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke");
-	    	return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status"), rs.getString("rolle"));
+	    	return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status"));
 	    }
 	    catch (SQLException e) {throw new DALException(e); }
 		
@@ -79,23 +80,36 @@ public class MySQLOperatoerDAO implements OperatoerDAO
 			ResultSet rs = connector.doQuery("SELECT * FROM operatoer where opr_status = 1");
 			while (rs.next()) 
 			{
-				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status"), rs.getString("rolle")));
+				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getInt("opr_status")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }
 		return list;
 	}
+	
+	public void updateRolle(OperatoerDTO opr) throws DALException {
+		try {
+			connector.doUpdate(
+					"UPDATE rolle SET  rolle = '" + opr.getRolle() + "' WHERE opr_id = " +
+							opr.getOprId()
+					);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 		
 	public void deactivateOperatoer(OperatoerDTO opr) throws DALException {
 		try {
 			connector.doUpdate(
-					"UPDATE operatoer SET  opr_navn = '" + opr.getOprNavn() + "', ini =  '" + opr.getIni() + 
-					"', cpr = '" + opr.getCpr() + "', password = '" + opr.getPassword() + "', opr_status = '0' WHERE opr_id = " +
-					opr.getOprId()
+					"UPDATE operatoer SET opr_status = '0' WHERE opr_id = " + opr.getOprId()
 			);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+	
 }

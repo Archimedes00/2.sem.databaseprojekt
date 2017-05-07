@@ -18,7 +18,7 @@ public class OperatoerDTO
 	/** Operatoer status; 1 for aktiv, 0 for inaktiv */
 	int oprStatus;
 
-	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus, String rolle)
+	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int oprStatus)
 	{
 		this.oprId = oprId;
 		this.oprNavn = oprNavn;
@@ -26,9 +26,8 @@ public class OperatoerDTO
 		this.cpr = cpr;
 		this.password = password;
 		this.oprStatus = oprStatus;
-		this.rolle = rolle;
 	}
-	
+//	
     public OperatoerDTO(OperatoerDTO opr)
     {
     	this.oprId = opr.getOprId();
