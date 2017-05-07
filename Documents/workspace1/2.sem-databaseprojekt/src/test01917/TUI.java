@@ -96,8 +96,8 @@ public class TUI implements ITUI
         System.out.println("|      3. ProduktBatchKomp  |");
         System.out.println("|      4. Recept            |");
         System.out.println("|      5. ReceptKomp        |");
-        System.out.println("|	   6. RaavareBatch      |");
-        System.out.println("|	   7. Raavare           |");
+        System.out.println("|      6. RaavareBatch      |");
+        System.out.println("|      7. Raavare           |");
         System.out.println("|                           |");
         System.out.println("=============================");
         
