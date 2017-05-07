@@ -514,7 +514,7 @@ public class TUI implements ITUI
 				System.out.println("|       ROLE SELECTION     |");
 				System.out.println("============================");
 				System.out.println("| Roles:                   |");
-				System.out.println("|      1. Admin		       |");
+				System.out.println("|      1. Admin            |");
 				System.out.println("|      2. Operator         |");
 				System.out.println("|      3. Foreman          |");
 				System.out.println("|      4. Pharmacist       |");
