@@ -182,7 +182,7 @@ public class TUI implements ITUI
              System.out.println("|        2. Update User    |");
              System.out.println("|        3. Delete User    |");
              System.out.println("|        4. List Users     |");
-             System.out.println("|        5. Exit           |");
+             System.out.println("|        5. Return         |");
              System.out.println("============================");
             
              input = scan.nextInt();
@@ -551,7 +551,9 @@ public class TUI implements ITUI
 		return cont;
 	}
 
-     public void quitProgram(){}
+    
+	
+	
      
      public void ProduktBatchmenu(ProduktBatchDAO PBatchDAO, ProduktBatchDTO PBatchDTO)
      {
